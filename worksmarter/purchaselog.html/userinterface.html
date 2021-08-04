@@ -1,0 +1,31 @@
+<html>
+  <header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <style>
+      .footer {
+        font-size:10px;
+      }
+    </style>
+  </header>
+  <body style="background-color:96B7D3;">
+    Welcome, {{ session["admin"]["first_name"] }}.
+    <a href='/logout'>Logout</a>
+    <p/>
+    <h1>User Interface</h1>
+    <STRONG>
+    <a href='/saleslog'>Sales Log</a>
+    <BR>
+    <a href='/order_input'>Order input</a>
+    <BR>
+    <a href='/receipt'>Receipt</a>
+    <BR>
+    <a href='/deliveryconfirmation'>Delivery confirmation</a>
+    </STRONG>
+    <BR>
+    <tr><th>Code</th><th>Name</th><th>Price</th></tr>
+  </body>
+</html>
+<BR>
+<BR>
+<BR>
+{% include "footer.html" %}

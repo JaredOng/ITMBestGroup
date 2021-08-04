@@ -1,9 +1,0 @@
-{
-    "kind":"Purchase",
-    "Supplier":"Jared's Carriage Retail",
-    "Order":{
-        "Venus Chocolate Bars":24,
-        "Magnolia Garlic Bread":22,
-        "NPA Rice":31
-    }
-}

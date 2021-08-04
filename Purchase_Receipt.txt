@@ -1,9 +1,0 @@
----------------------------------------------
-Supplier :     Jared's Carriage Retail
-Email    :     jared@jaredretail.com
----------------------------------------------
-Venus Chocolate Bars         	24   	96000
-Magnolia Garlic Bread        	22   	93082
-NPA Rice                     	31   	23250
----------------------------------------------
-Total    :                             212332

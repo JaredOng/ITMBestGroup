@@ -1,7 +1,7 @@
 {
-        "kind":"Sales",
+       "kind":"Purchase",
+        "Supplier":"Os' Sauce and salts",
         "Order":{
-            "Bullhead Milk":14,
-            "Lucky Mo Big Noodles":234
+            "Silver Duck Soy Sauce":3
         }
     }

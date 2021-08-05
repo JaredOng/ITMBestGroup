@@ -113,11 +113,15 @@ path = os.getcwd()+"/Receipts_Folder/Sales Receipts"
 path2 = os.getcwd()+"/Receipts_Folder/Purchase Receipts"
 sales_receipts = {}
 purchase_receipts = {}
+
 def get_sales_receipts():
     for filename in os.listdir(path):
-        sales_receipts[filename] = filename[:-4]
+        sales_receipts[filename] = f"Receipts_Folder/Sales Receipts/{filename}"
     return sales_receipts
 def get_purchase_receipts():
     for filename in os.listdir(path2):
-        purchase_receipts[filename] = filename[:-4]
+        purchase_receipts[filename] = f"Receipts_Folder/Purchase Receipts/{filename}"
     return purchase_receipts
+
+#Read Receipt Files 
+#def read_receipt(filepath):

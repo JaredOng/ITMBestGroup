@@ -6,6 +6,7 @@ from datetime import datetime
 import ws_database as db
 import authentication
 import logging
+import os
 
 app = Flask(__name__)
 
@@ -68,10 +69,8 @@ def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
-@app.route('/receipt',methods=["GET","POST"])
+@app.route('/receipt_viewer',methods=["GET","POST"])
 def receipt():
-
-    pagecontent = 'Receipt page'
     return render_template("receipt.html", page="Receipt")
 
 @app.route('/currentinventory')

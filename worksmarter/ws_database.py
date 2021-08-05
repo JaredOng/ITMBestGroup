@@ -1,5 +1,6 @@
 from flask import sessions
 import json
+import os
 #Admin Database
 f = open("Databases/Admin_List.json")
 admin = json.load(f)
@@ -90,11 +91,13 @@ def input_sales(date,product_name,qty,price):
 def price_change(product,value):
     product_list[product] = value
 
-    with open('Databases/Product_List.json',"w")as d:
+    with open('Databases/Product_List.json',"w") as d:
         json.dump(product_list,d,indent=4)
 
-o = open("Databases/Product_List.json")
+#Current Inventory
+o = open("Databases/Current_Inventory.json")
 current_inventory = json.load(o)
+
 def get_current_inventory():
     current_inventory_list = []
 
@@ -104,3 +107,5 @@ def get_current_inventory():
         product = current_inventory_dict
         current_inventory_list.append(product)
     return current_inventory_list
+
+

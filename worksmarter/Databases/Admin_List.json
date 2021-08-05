@@ -14,13 +14,8 @@
              "first_name": "Colyn",
              "last_name": "Ching"},
 
-<<<<<<< HEAD
-"theoneandshanlyone": {"password" : "shanisnotasheep",
-       "first_name" :"Shan",
-=======
 "theoneandshanlyone": {"password" : "shanisnotasheep", 
        "first_name" :"Shan", 
->>>>>>> 172e5de08b1674af42e4918de1744a7ad86a58ab
        "last_name" :"Porras"},
 
 "test": {"password" : "1234",

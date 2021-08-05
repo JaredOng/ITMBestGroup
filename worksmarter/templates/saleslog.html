@@ -1,4 +1,3 @@
-
 <html>
   <header>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
@@ -21,7 +20,11 @@ table, th, td {
 }
 
 </style>
-      <table style="width:60%">
+      <table style="width:30%">
+        <col style="width:15%">
+        <col style="width:35%">
+        <col style="width:10%">
+        <col style="width:10%">
         <tr><th>Date</th><th>Product Name</th><th>Quantity</th><th>Price</th></tr>
         {% for log in sales_log_list %}
         <tr><td>{{log["date"]}}</td><td>{{log["product"]}}</td><td>{{log["quantity"]}}</td><td>{{log["price"]}}</td></tr>

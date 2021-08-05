@@ -70,12 +70,15 @@ def purchaselog():
 
 @app.route('/receipt')
 def receipt():
-    pagecontent = 'Receipt page'
     return render_template("receipt.html", page="Receipt")
+
+@app.route('/currentinventory')
+def currentinventory():
+    current_inventory_list = db.get_current_inventory()
+    return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
 
 @app.route('/deliveryconfirmation')
 def deliveryconfirmation():
-    pagecontent = 'Delivery confirmation page'
     return render_template("deliveryconfirmation.html", page="Receipt")
 
 if __name__ == '__main__':

@@ -1,0 +1,41 @@
+<html>
+  <header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <style>
+      .footer {
+        font-size:10px;
+      }
+    </style>
+  </header>
+  <body style="background-color:96B7D3;">
+    Welcome, {{ session["admin"]["first_name"] }}.
+    <a href='/logout'>Logout</a>
+    <BR>
+    <a href='/user_interface_page'>Back</a>
+    <p/>
+    <h1>Current inventory</h1>
+    <style>
+    table, th, td {
+    border: 2px solid black;
+    }
+
+    </style>
+    <table style="width:20%">
+      <col style="width:80%">
+	    <col style="width:20%">
+      <tr><th>Product Name</th><th>Quantity</th></tr>
+      {% for product in current_inventory_list %}
+      <tr><td>{{product["product"]}}</td><td>{{product["quantity"]}}</td></tr>
+      {% endfor %}
+    </table>
+
+
+
+
+
+    </body>
+    </html>
+    <BR>
+    <BR>
+    <BR>
+    {% include "footer.html" %}

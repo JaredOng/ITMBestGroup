@@ -92,3 +92,15 @@ def price_change(product,value):
 
     with open('Databases/Product_List.json',"w")as d:
         json.dump(product_list,d,indent=4)
+
+o = open("Databases/Product_List.json")
+current_inventory = json.load(o)
+def get_current_inventory():
+    current_inventory_list = []
+
+    current_inventory_dict = {}
+    for i,v in current_inventory.items():
+        current_inventory_dict = {"product":i,"quantity":v}
+        product = current_inventory_dict
+        current_inventory_list.append(product)
+    return current_inventory_list

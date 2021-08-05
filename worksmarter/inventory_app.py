@@ -68,8 +68,9 @@ def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
-@app.route('/receipt')
+@app.route('/receipt',methods=["GET","POST"])
 def receipt():
+
     pagecontent = 'Receipt page'
     return render_template("receipt.html", page="Receipt")
 

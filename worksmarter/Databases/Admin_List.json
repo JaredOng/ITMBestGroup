@@ -16,4 +16,8 @@
 
 "theoneandshanlyone": {"password" : "shanisnotasheep", 
        "first_name" :"Shan", 
-       "last_name" :"Porras"}}
+       "last_name" :"Porras"},
+
+"test": {"password" : "1234", 
+        "first_name" :"test", 
+        "last_name" :"test"}}

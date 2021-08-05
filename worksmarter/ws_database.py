@@ -985,3 +985,108 @@ def get_purchase_log():
 
 
     return purchase_log_list
+
+supplier_info = {
+    "Jared's Carriage Retail": {
+        "Email": "jared@jaredretail.com",
+        "Products_CostsPHP": {
+            "Lucky Mo Big Noodles": 500,
+            "Venus Chocolate Bars": 4000,
+            "Magnolia Garlic Bread": 4231,
+            "NPA Rice": 750
+        }
+    },
+    "Shan's Shampoo": {
+        "Email": "shan@shanpoo.com",
+        "Products_CostsPHP": {
+            "Beach Fabric Conditioner": 2356,
+            "Don Rox Bleach": 4200,
+            "Panteen Shampoo": 450,
+            "Col Git Toothpaste": 1240
+        }
+    },
+    "Colyn's Cola": {
+        "Email": "colyn@colyncola.com",
+        "Products_CostsPHP": {
+            "Mrs. Chips": 1500,
+            "Brava Biscuits": 500,
+            "Rita Round Biscuits": 250,
+            "Royal Cola": 2150
+        }
+    },
+    "Reese's Milk and Cheese retail": {
+        "Email": "reese@reesecheese.com",
+        "Products_CostsPHP": {
+            "Bullhead Milk": 2000,
+            "Mila's Chocolate Milk": 2300,
+            "Select Vanilla Ice Cream": 2000,
+            "Dairy King Ice Cream": 3200,
+            "Mr. Jelly Gulaman Pack": 2100
+        }
+    },
+    "Os' Sauce and salts": {
+        "Email": "os@ossauce.com",
+        "Products_CostsPHP": {
+            "Silver Duck Soy Sauce": 1250,
+            "Datu Itim Vinegar": 1750,
+            "Mayon Blue Salt": 2300
+        }
+    }
+}
+def get_supplier_pricing():
+    supplier_pricing_list = []
+
+    supplier_pricing_dict={}
+    for i,v in supplier_info.items():
+        for j,k in v["Products_CostsPHP"].items():
+            supplier_pricing_dict={"product":j,"price":k}
+            product = supplier_pricing_dict
+            supplier_pricing_list.append(product)
+
+
+    return supplier_pricing_list
+
+product_list = {
+    "Bullhead Milk": 2500,
+    "Brava Biscuits": 570,
+    "Mila's Chocolate Milk": 2500,
+    "Rita Round Biscuits": 270,
+    "Royal Cola": 2270,
+    "Mrs. Chips": 1800,
+    "Lucky Mo Big Noodles": 600,
+    "Silver Duck Soy Sauce": 1300,
+    "Datu Itim Vinegar": 2000,
+    "Select Vanilla Ice Cream": 2500,
+    "Venus Chocolate Bars": 4600,
+    "NPA Rice": 850,
+    "Beach Fabric Conditioner": 2500,
+    "Don Rox Bleach": 4500,
+    "Dairy King Ice Cream": 3700,
+    "Mr. Jelly Gulaman Pack": 2500,
+    "Magnolia Garlic Bread": 4500,
+    "Panteen Shampoo": 650,
+    "Col Git Toothpaste": 1350,
+    "Mayon Blue Salt": 2700
+}
+def get_price(product_name):
+    price = product_list[product_name]
+    return price
+
+def get_store_pricing():
+    store_pricing_list = []
+    store_pricing_dict={}
+    for i,j in product_list.items():
+        store_pricing_dict={"product":i,"price":j}
+        product = store_pricing_dict
+        store_pricing_list.append(product)
+    return store_pricing_list
+
+def input_sales(date,product_name,qty,price):
+    if date not in sales_log:
+        sales_log[date]={product_name:{"Quantity": qty,"Price": price}}
+    else:
+        if product_name not in sales_log[date]:
+            sales_log[date][product_name]={"Quantity": qty,"Price": price}
+        elif product_name in sales_log[date]:
+            qty = qty + sales_log[date][product_name]["Quantity"]
+            sales_log[date][product_name]={"Quantity": qty,"Price": price}

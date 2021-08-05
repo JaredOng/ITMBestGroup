@@ -2,6 +2,7 @@ from flask import Flask,redirect
 from flask import render_template
 from flask import request
 from flask import session
+from datetime import datetime
 import ws_database as db
 import authentication
 import logging
@@ -36,16 +37,27 @@ def auth():
     else:
         return redirect('/login')
 
+@app.route('/order_input', methods=["GET","POST"])
+def orderinput():
+    store_pricing_list=db.get_store_pricing()
+    if request.method == "POST":
+        req = request.form
+        date = datetime.now().strftime("%m/%d/%Y")
+        product_name = req.get("product")
+        qty = req.get("quantity")
+        price = db.get_price(product_name)
+        db.input_sales(date,product_name,qty,price)
+    return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
+
 @app.route('/logout')
 def logout():
-    session.pop("admin",None)
     return redirect("/")
 
 @app.route('/user_interface_page')
 def userinterfacepage():
     return render_template("userinterface.html", page="User interface")
 
-@app.route('/saleslog')
+@app.route('/saleslog',methods=["GET","POST"])
 def saleslog():
     sales_log_list = db.get_sales_log()
     return render_template("saleslog.html", page="Sales Log",sales_log_list=sales_log_list)
@@ -54,10 +66,6 @@ def saleslog():
 def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
-
-@app.route('/order_input')
-def orderinput():
-    return render_template("orderinput.html", page="Order input")
 
 @app.route('/receipt')
 def receipt():
@@ -68,3 +76,6 @@ def receipt():
 def deliveryconfirmation():
     pagecontent = 'Delivery confirmation page'
     return render_template("deliveryconfirmation.html", page="Receipt")
+
+if __name__ == '__main__':
+    app.run(debug=True)

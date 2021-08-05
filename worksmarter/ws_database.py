@@ -1,6 +1,7 @@
+from flask import sessions
 import json
 #Admin Database
-f = open("Admin_List.json")
+f = open("Databases/Admin_List.json")
 admin = json.load(f)
 
 def get_user(username):
@@ -10,7 +11,7 @@ def get_user(username):
        return None
 
 #Sales Log Database
-g = open("Sales_Log.json")
+g = open("Databases/Sales_Log.json")
 sales_log = json.load(g)
 
 def get_sales_log():
@@ -26,7 +27,7 @@ def get_sales_log():
     return sales_log_list
 
 #Purchase Log Database
-h = open("Purchase_Log.json")
+h = open("Databases/Purchase_Log.json")
 purchase_log = json.load(h)
 
 def get_purchase_log():
@@ -42,7 +43,7 @@ def get_purchase_log():
     return purchase_log_list
 
 #Supplier Database
-m = open("Supplier_Database.json")
+m = open("Databases/Supplier_Database.json")
 supplier_info = json.load(m)
 
 def get_supplier_pricing():
@@ -59,7 +60,7 @@ def get_supplier_pricing():
     return supplier_pricing_list
 
 #Product Database
-n = open("Product_List.json")
+n = open("Databases/Product_List.json")
 product_list = json.load(n)
 def get_price(product_name):
     price = product_list[product_name]
@@ -83,11 +84,11 @@ def input_sales(date,product_name,qty,price):
         elif product_name in sales_log[date]:
             qty = qty + sales_log[date][product_name]["Quantity"]
             sales_log[date][product_name]={"Quantity": qty,"Price": price}
-    with open("Sales_Log.json","w") as log:
-        log.write(sales_log)
+    with open("Databases/Sales_log.json","w") as log:
+        json.dump(sales_log,log,indent=4)
 
 def price_change(product,value):
     product_list[product] = value
 
-    with open('Product_List.json',"w")as d:
+    with open('Databases/Product_List.json',"w")as d:
         json.dump(product_list,d,indent=4)

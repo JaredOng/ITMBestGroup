@@ -21,7 +21,7 @@ def get_sales_log():
     sales_log_dict={}
     for i,v in sales_log.items():
         for k in v:
-            sales_log_dict[i]={"date":i,"product":k,"quantity":v[k]["Quantity"],"price":v[k]["Price"]}
+            sales_log_dict[i]={"date":i,"product":k,"quantity":v[k]["Quantity"],"price":v[k]["Price"],"subtotal":v[k]["Subtotal"]}
             log = sales_log_dict[i]
             sales_log_list.append(log)
 
@@ -37,7 +37,7 @@ def get_purchase_log():
     purchase_log_dict={}
     for i,v in purchase_log.items():
         for k in v:
-            purchase_log_dict[i]={"date":i,"product":k,"quantity":v[k]["Quantity"],"price":v[k]["Price"]}
+            purchase_log_dict[i]={"date":i,"product":k,"quantity":v[k]["Quantity"],"price":v[k]["Price"],"subtotal":v[k]["Subtotal"]}
             log = purchase_log_dict[i]
             purchase_log_list.append(log)
 
@@ -76,15 +76,16 @@ def get_store_pricing():
         store_pricing_list.append(product)
     return store_pricing_list
 
-def input_sales(date,product_name,qty,price):
+def input_sales(date,product_name,qty,price,subtotal):
     if date not in sales_log:
-        sales_log[date]={product_name:{"Quantity": qty,"Price": price}}
+        sales_log[date]={product_name:{"Quantity": qty,"Price": price, "Subtotal": subtotal}}
     else:
         if product_name not in sales_log[date]:
-            sales_log[date][product_name]={"Quantity": qty,"Price": price}
+            sales_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
         elif product_name in sales_log[date]:
             qty = qty + sales_log[date][product_name]["Quantity"]
-            sales_log[date][product_name]={"Quantity": qty,"Price": price}
+            subtotal = qty*price
+            sales_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
     with open("Databases/Sales_log.json","w") as log:
         json.dump(sales_log,log,indent=4)
 
@@ -94,7 +95,10 @@ def price_change(product,value):
     with open('Databases/Product_List.json',"w") as d:
         json.dump(product_list,d,indent=4)
 
+<<<<<<< HEAD
+=======
 #Current Inventory
+>>>>>>> 95e325f3cc3e371e7e48c55c636e10eb84f08850
 o = open("Databases/Current_Inventory.json")
 current_inventory = json.load(o)
 
@@ -108,6 +112,17 @@ def get_current_inventory():
         current_inventory_list.append(product)
     return current_inventory_list
 
+<<<<<<< HEAD
+def get_product_inventory(product_name):
+    quantity=current_inventory[product_name]
+    return quantity
+
+def subtract_current_inventory(product_name,qty):
+    current_inventory[product_name]=current_inventory[product_name]-qty
+
+    with open("Databases/Current_Inventory.json","w")as c_i:
+        json.dump(current_inventory,c_i,indent=4)
+=======
 #Receipt Files 
 path = os.getcwd()+"/Receipts_Folder/Sales Receipts"
 path2 = os.getcwd()+"/Receipts_Folder/Purchase Receipts"
@@ -122,6 +137,10 @@ def get_purchase_receipts():
     for filename in os.listdir(path2):
         purchase_receipts[filename] = f"Receipts_Folder/Purchase Receipts/{filename}"
     return purchase_receipts
+<<<<<<< HEAD
 
 #Read Receipt Files 
 #def read_receipt(filepath):
+=======
+>>>>>>> 95e325f3cc3e371e7e48c55c636e10eb84f08850
+>>>>>>> f63fb26129be236f4bbf9c992b3b3f9b70e0e887

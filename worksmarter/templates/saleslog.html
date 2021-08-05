@@ -25,9 +25,10 @@ table, th, td {
         <col style="width:35%">
         <col style="width:10%">
         <col style="width:10%">
-        <tr><th>Date</th><th>Product Name</th><th>Quantity</th><th>Price</th></tr>
+        <col style="width:10%">
+        <tr><th>Date</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>
         {% for log in sales_log_list %}
-        <tr><td>{{log["date"]}}</td><td>{{log["product"]}}</td><td>{{log["quantity"]}}</td><td>{{log["price"]}}</td></tr>
+        <tr><td>{{log["date"]}}</td><td>{{log["product"]}}</td><td>{{log["quantity"]}}</td><td>{{log["price"]}}</td><td>{{log["subtotal"]}}</td></tr>
         {% endfor %}
       </table>
 

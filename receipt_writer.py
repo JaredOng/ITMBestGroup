@@ -41,7 +41,7 @@ def Receipt_Maker():
     #Purchase Receipt
     if rdb['kind'] == "Purchase":
         #Header
-        f = open(f"Receipts Folder/{today} {rdb['Supplier']} Purchase_Receipt.txt","w")
+        f = open(f"Receipts Folder/{today}_{rdb['Supplier']}_Purchase_Receipt.txt","w")
         f.write("---------------------------------------------\n") #40 Spaces
         f.write(f"Supplier :     {rdb['Supplier']}\n")
         f.write(f"Email    :     {sdb[rdb['Supplier']]['Email']}\n")
@@ -83,7 +83,7 @@ def Receipt_Maker():
         f.close
         
         #Body
-        with open("Receipts Folder/Sales_Receipt.txt","a") as f:
+        with open(f"Receipts Folder/{today}_Sales_Receipt.txt","a") as f:
             for i in rdb['Order'].keys():
                 Product = i
                 Qty = str(rdb["Order"][i])

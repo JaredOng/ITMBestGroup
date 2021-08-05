@@ -1,3 +1,4 @@
+from flask import session
 admin = {"nottheavreagejoe":            {"password":"imnotjoeking",
                                         "first_name": "Joe",
                                         "last_name":"Ilagan"},

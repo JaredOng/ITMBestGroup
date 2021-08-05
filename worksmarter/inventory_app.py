@@ -44,10 +44,11 @@ def orderinput():
         req = request.form
         date = datetime.now().strftime("%m/%d/%Y")
         product_name = req.get("product")
-        qty = req.get("quantity")
+        qty = int(req.get("quantity"))
         price = db.get_price(product_name)
         db.input_sales(date,product_name,qty,price)
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
+
 
 @app.route('/logout')
 def logout():

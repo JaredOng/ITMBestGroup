@@ -23,7 +23,6 @@ def get_sales_log():
             log = sales_log_dict[i]
             sales_log_list.append(log)
 
-
     return sales_log_list
 
 #Purchase Log Database
@@ -39,7 +38,6 @@ def get_purchase_log():
             purchase_log_dict[i]={"date":i,"product":k,"quantity":v[k]["Quantity"],"price":v[k]["Price"]}
             log = purchase_log_dict[i]
             purchase_log_list.append(log)
-
 
     return purchase_log_list
 
@@ -85,6 +83,8 @@ def input_sales(date,product_name,qty,price):
         elif product_name in sales_log[date]:
             qty = qty + sales_log[date][product_name]["Quantity"]
             sales_log[date][product_name]={"Quantity": qty,"Price": price}
+    with open("Sales_Log.json","w") as log:
+        log.write(sales_log)
 
 def price_change(product,value):
     product_list[product] = value

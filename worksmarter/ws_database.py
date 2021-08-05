@@ -95,10 +95,7 @@ def price_change(product,value):
     with open('Databases/Product_List.json',"w") as d:
         json.dump(product_list,d,indent=4)
 
-<<<<<<< HEAD
-=======
 #Current Inventory
->>>>>>> 95e325f3cc3e371e7e48c55c636e10eb84f08850
 o = open("Databases/Current_Inventory.json")
 current_inventory = json.load(o)
 

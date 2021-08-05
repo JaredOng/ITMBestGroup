@@ -108,4 +108,16 @@ def get_current_inventory():
         current_inventory_list.append(product)
     return current_inventory_list
 
-
+#Receipt Files 
+path = os.getcwd()+"/Receipts_Folder/Sales Receipts"
+path2 = os.getcwd()+"/Receipts_Folder/Purchase Receipts"
+sales_receipts = {}
+purchase_receipts = {}
+def get_sales_receipts():
+    for filename in os.listdir(path):
+        sales_receipts[filename] = filename[:-4]
+    return sales_receipts
+def get_purchase_receipts():
+    for filename in os.listdir(path2):
+        purchase_receipts[filename] = filename[:-4]
+    return purchase_receipts

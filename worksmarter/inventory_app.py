@@ -1,3 +1,4 @@
+
 from flask import Flask,redirect
 from flask import render_template
 from flask import request
@@ -11,7 +12,7 @@ import logging
 import os
 import receipt_writer
 import datetime
-
+import lp_model
 app = Flask(__name__)
 
 app.secret_key = b'secretkey'
@@ -106,7 +107,8 @@ def currentinventory():
 
 @app.route('/orderstocks')
 def orderstocks():
-    return render_template("orderstocks.html", page="Order Stocks")
+    stock_table=lp_model.LP_Model()
+    return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():

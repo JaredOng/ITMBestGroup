@@ -19,29 +19,28 @@
 import json
 from datetime import date
 
- #Supplier Database
-g = open("Databases/Supplier_Database.json")
-sdb = json.load(g)
-
-#Product List
-n = open('Databases/Product_List.json')
-pdb = json.load(n)
-
- #Supplier Database
-g = open("Databases/Supplier_Database.json")
-sdb = json.load(g)
-
-#Product List
-n = open('Databases/Product_List.json')
-pdb = json.load(n)
-
-#Sales Log
-z = open("Databases/Sales_Log.json")
-sl = json.load(z)
-
 #Receipt Maker Def
 def Receipt_Maker(kind,day):
 
+    #Supplier Database
+    g = open("Databases/Supplier_Database.json")
+    sdb = json.load(g)
+
+    #Product List
+    n = open('Databases/Product_List.json')
+    pdb = json.load(n)
+
+    #Supplier Database
+    g = open("Databases/Supplier_Database.json")
+    sdb = json.load(g)
+
+    #Product List
+    n = open('Databases/Product_List.json')
+    pdb = json.load(n)
+
+    #Sales Log
+    z = open("Databases/Sales_Log.json")
+    sl = json.load(z)
     #Purchase Receipt Content
     m = open('Databases/Purchase_Receipt_Content.json')
     prdb = json.load(m)
@@ -126,8 +125,12 @@ def Receipt_Maker(kind,day):
         g.close()
 
 def sales_content_writer(date):
+    z = open("Databases/Sales_Log.json")
+    sl = json.load(z)
+    day = date
+    temp = sl[day]
     Date = date.replace("/","-")
     srdb = {}
-    srdb[Date] = sl[date]
+    srdb[Date] = temp
     with open('Databases/Sales_Receipt_Content.json','w') as b:
         json.dump(srdb,b,indent=4)

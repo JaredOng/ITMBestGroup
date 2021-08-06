@@ -32,8 +32,6 @@ def LP_Model():
             else:
                 graph_items.append(temp)
                 temp = 0
-
-
         x = np.array(graph_items).reshape((-1, 1))
         y = np.array(range(len(graph_items)))
         model = LinearRegression().fit(x, y)
@@ -41,7 +39,23 @@ def LP_Model():
             next_day[items] = int(model.intercept_ + model.coef_ * len(graph_items)+1) #NEXT WEEK
         else:
             next_day[items] = 0
+    with open("Databases/IdealProductList.json", "w") as filez: #write
+        json.dump(next_day, filez)
+    return next_day
 
+def Report_Generator():
+    for items in Capacity_Inventory_List:
+        graph_items = []
+        temp = 0
+        for i, dates in enumerate(sales_log):
+            if i % 7 != 0:
+                try:
+                    temp += sales_log[dates][items]["Quantity"]
+                except:
+                    temp += 0
+            else:
+                graph_items.append(temp)
+                temp = 0
         fig, ax = plt.subplots()
         ax.plot(range(len(graph_items)), graph_items )
         ax.set_xlabel("Week #")
@@ -49,9 +63,7 @@ def LP_Model():
         ax.set_title(items+ " Sales History")
         fig.savefig("Product_Graphs/LP_"+ items + ".png")
         plt.close(fig)
-    with open("Databases/IdealProductList.json", "w") as filez: #write
-        json.dump(next_day, filez)
-    return next_day
+
 
 def Profit_list_func():
     Profit_list = {}

@@ -1,8 +1,29 @@
 {
-    "kind": "Sales",
-    "date": "07/31/2021",
-    "Order": {
-        "Royal Cola": 3,
-        "NPA Rice":7
+    "07-29-2021": {
+        "Brava Biscuits": {
+            "Quantity": 1,
+            "Price": 570,
+            "Subtotal": 570
+        },
+        "Select Vanilla Ice Cream": {
+            "Quantity": 1,
+            "Price": 2500,
+            "Subtotal": 2500
+        },
+        "Datu Itim Vinegar": {
+            "Quantity": 1,
+            "Price": 2000,
+            "Subtotal": 2000
+        },
+        "Mrs. Chips": {
+            "Quantity": 1,
+            "Price": 1800,
+            "Subtotal": 1800
+        },
+        "Bullhead Milk": {
+            "Quantity": 3,
+            "Price": 2500,
+            "Subtotal": 7500
+        }
     }
 }

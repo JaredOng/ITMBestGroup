@@ -112,7 +112,7 @@ def salesreceiptsmaker():
 def salesrecprg():
     day = request.form.get('date')
     kind = request.form.get('kind')
-    receipt_writer.sales_content_writer(date)
+    receipt_writer.sales_content_writer(day)
     receipt_writer.Receipt_Maker(kind)
     sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)

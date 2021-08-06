@@ -48,7 +48,7 @@ def LP_Model():
         ax.set_ylabel("Quantity of Product")
         ax.set_title(items+ " Sales History")
 
-        fig.savefig("LP_"+ items + ".png")
+        fig.savefig("Product_Graphs/LP_"+ items + ".png")
     with open("IdealProductList.json", "w") as filez: #write
         json.dump(next_day, filez)
     return next_day

@@ -1400,57 +1400,5 @@
             "Price": 1250,
             "Subtotal": 3750
         }
-    },
-    "08/07/2021": {
-        "Brava Biscuits": {
-            "Quantity": 31,
-            "Price": 500,
-            "Subtotal": 15500
-        },
-        "Mila's Chocolate Milk": {
-            "Quantity": 4,
-            "Price": 2300,
-            "Subtotal": 9200
-        },
-        "Rita Round Biscuits": {
-            "Quantity": 19,
-            "Price": 250,
-            "Subtotal": 4750
-        },
-        "Royal Cola": {
-            "Quantity": 10,
-            "Price": 2150,
-            "Subtotal": 21500
-        },
-        "Mrs. Chips": {
-            "Quantity": 23,
-            "Price": 1500,
-            "Subtotal": 34500
-        },
-        "Datu Itim Vinegar": {
-            "Quantity": 15,
-            "Price": 1750,
-            "Subtotal": 26250
-        },
-        "Dairy King Ice Cream": {
-            "Quantity": 26,
-            "Price": 3200,
-            "Subtotal": 83200
-        },
-        "Panteen Shampoo": {
-            "Quantity": 22,
-            "Price": 450,
-            "Subtotal": 9900
-        },
-        "Col Git Toothpaste": {
-            "Quantity": 59,
-            "Price": 1240,
-            "Subtotal": 73160
-        },
-        "Mayon Blue Salt": {
-            "Quantity": 27,
-            "Price": 2300,
-            "Subtotal": 62100
-        }
     }
 }

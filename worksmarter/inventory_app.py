@@ -7,6 +7,8 @@ import ws_database as db
 import authentication
 import logging
 import os
+import receipt_writer
+import datetime
 
 app = Flask(__name__)
 
@@ -77,12 +79,12 @@ def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
-@app.route('/salesreceipt',methods=["GET","POST"])
+@app.route('/salesreceipts',methods=["GET","POST"])
 def salesreceipt():
     sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
 
-@app.route('/purchasereceipt',methods=["GET","POST"])
+@app.route('/purchasereceipts',methods=["GET","POST"])
 def purchasereceipt():
     purchase_receipts = db.get_purchase_receipts()
     return render_template("purchasereceipts.html", page="Purchase Receipt",purchase_receipts=purchase_receipts)
@@ -104,7 +106,16 @@ def deliveryconfirmation():
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():
-
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
+
+@app.route('/salesrecprg')
+def salesrecprg():
+    day = request.form.get('date')
+    kind = request.form.get('kind')
+    receipt_writer.sales_content_writer(date)
+    receipt_writer.Receipt_Maker(kind)
+    sales_receipts = db.get_sales_receipts()
+    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+
 if __name__ == '__main__':
     app.run(debug=True)

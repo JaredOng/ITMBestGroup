@@ -2,10 +2,14 @@ from flask import Flask,redirect
 from flask import render_template
 from flask import request
 from flask import session
-from datetime import datetime
+from datetime import date
 import ws_database as db
+import receipt_writer as rw
 import authentication
 import logging
+import os
+import receipt_writer
+import datetime
 
 app = Flask(__name__)
 
@@ -20,7 +24,11 @@ navbar = """
          <p/>
          """
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/')
+def welcome():
+    return render_template("home.html", page="Login")
+
+@app.route('/login',methods=["GET","POST"])
 def login():
     return render_template("login.html", page="Login")
 
@@ -42,11 +50,17 @@ def orderinput():
     store_pricing_list=db.get_store_pricing()
     if request.method == "POST":
         req = request.form
-        date = datetime.now().strftime("%m/%d/%Y")
+        d = date.today().strftime("%m/%d/%Y")
         product_name = req.get("product")
         qty = int(req.get("quantity"))
         price = db.get_price(product_name)
-        db.input_sales(date,product_name,qty,price)
+        subtotal = qty*price
+        qty<= db.get_product_inventory(product_name)
+        db.input_sales(d,product_name,qty,price,subtotal)
+        db.subtract_current_inventory(product_name,qty)
+        kind = "Sales"
+        rw.sales_content_writer(d)
+        rw.Receipt_Maker(kind,d)
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
 
 
@@ -68,15 +82,44 @@ def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
-@app.route('/receipt')
-def receipt():
-    pagecontent = 'Receipt page'
-    return render_template("receipt.html", page="Receipt")
+@app.route('/salesreceipts',methods=["GET","POST"])
+def salesreceipt():
+    sales_receipts = db.get_sales_receipts()
+    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+
+@app.route('/purchasereceipts',methods=["GET","POST"])
+def purchasereceipt():
+    purchase_receipts = db.get_purchase_receipts()
+    return render_template("purchasereceipts.html", page="Purchase Receipt",purchase_receipts=purchase_receipts)
+
+@app.route("/receipt_reader",methods=["GET","POST"])
+def receipt_reader():
+    receipt = request.form.get('receipt')
+    text = db.read_receipt(receipt)
+    return render_template("receipt_reader.html",page="Receipt_Reader",receipt=receipt,text=text)
+
+@app.route('/currentinventory')
+def currentinventory():
+    current_inventory_list = db.get_current_inventory()
+    return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
 
 @app.route('/deliveryconfirmation')
 def deliveryconfirmation():
-    pagecontent = 'Delivery confirmation page'
-    return render_template("deliveryconfirmation.html", page="Receipt")
+    return render_template("deliveryconfirmation.html", page="delivery confirmation")
+
+@app.route('/salesreceiptsmaker')
+def salesreceiptsmaker():
+    return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
+
+@app.route('/salesrecprg',methods=["GET","POST"])
+def salesrecprg():
+    if request.method=="POST":
+        day = request.form.get('day')
+        kind = request.form.get('kind')
+        receipt_writer.sales_content_writer(day)
+        receipt_writer.Receipt_Maker(kind,day)
+        sales_receipts = db.get_sales_receipts()
+    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
 
 if __name__ == '__main__':
     app.run(debug=True)

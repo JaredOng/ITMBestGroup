@@ -1,19 +1,4 @@
-
-<html>
-  <header>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <style>
-      .footer {
-        font-size:10px;
-      }
-    </style>
-  </header>
-  <body style="background-color:96B7D3;">
-    Welcome, {{ session["admin"]["first_name"] }}.
-    <a href='/logout'>Logout</a>
-    <BR>
-    <a href='/user_interface_page'>Back</a>
-    <p/>
+{% include "header.html" %}
       <h1>Purchase Log</h1>
       <style>
 table, th, td {
@@ -21,10 +6,15 @@ table, th, td {
 }
 
 </style>
-      <table style="width:60%">
-        <tr><th>Date</th><th>Product Name</th><th>Quantity</th><th>Price</th></tr>
+      <table style="width:30%">
+        <col style="width:15%">
+        <col style="width:35%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <col style="width:10%">
+        <tr><th>Date</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>
         {% for log in purchase_log_list %}
-        <tr><td>{{log["date"]}}</td><td>{{log["product"]}}</td><td>{{log["quantity"]}}</td><td>{{log["price"]}}</td></tr>
+        <tr><td>{{log["date"]}}</td><td>{{log["product"]}}</td><td>{{log["quantity"]}}</td><td>{{log["price"]}}</td><td>{{log["subtotal"]}}</td></tr>
         {% endfor %}
       </table>
 

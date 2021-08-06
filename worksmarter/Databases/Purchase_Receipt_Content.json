@@ -1,0 +1,7 @@
+{
+       "kind":"Purchase",
+        "Supplier":"Os' Sauce and salts",
+        "Order":{
+            "Silver Duck Soy Sauce":3
+        }
+    }

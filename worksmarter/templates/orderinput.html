@@ -1,18 +1,4 @@
-<html>
-  <header>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <style>
-      .footer {
-        font-size:10px;
-      }
-    </style>
-  </header>
-  <body style="background-color:96B7D3;">
-    Welcome, {{ session["admin"]["first_name"] }}.
-    <a href='/logout'>Logout</a>
-    <BR>
-    <a href='/user_interface_page'>Back</a>
-    <p/>
+{% include "header.html" %}
     <h1>Order input</h1>
 
       <style>
@@ -21,15 +7,35 @@
       <table style="width:25%">
       <tr><th>Product Name</th><th>Price</th></tr>
       {% for product in store_pricing_list %}
-      <tr><td>{{product["product"]}}</td><td>{{product["price"]}}<td></tr>
+      <tr><td>{{product["product"]}}</td><td>{{product["price"]}}</td></tr>
       {% endfor %}
       </table>
+      <BR>
 
       <form action="/order_input" method="POST">
-
-        <div class="form-group">
-          <input type="text" name="product" placeholder="Input product name" class="form-control">
-        </div>
+        <label for="product">Choose a product:</label>
+          <select name="product" id="product">
+            <option value="Beach Fabric Conditioner">Beach Fabric Conditioner</option>
+            <option value="Brava Biscuits">Brava Biscuits</option>
+            <option value="Bullhead Milk">Bullhead Milk</option>
+            <option value="Col Git Toothpaste">Col Git Toothpaste</option>
+            <option value="Dairy King Ice Cream">Dairy King Ice Cream</option>
+            <option value="Datu Itim Vinegar">Datu Itim Vinegar</option>
+            <option value="Don Rox Bleach">Don Rox Bleach</option>
+            <option value="Lucky Mo Big Noodles">Lucky Mo Big Noodles</option>
+            <option value="Magnolia Garlic Bread">Magnolia Garlic Bread</option>
+            <option value="Mayon Blue Salt">Mayon Blue Salt</option>
+            <option value="Mila's Chocolate Milk">Mila's Chocolate Milk</option>
+            <option value="Mr. Jelly Gulaman Pack">Mr. Jelly Gulaman Pack</option>
+            <option value="Mrs. Chips">Mrs. Chips</option>
+            <option value="NPA Rice">NPA Rice</option>
+            <option value="Panteen Shampoo">Panteen Shampoo</option>
+            <option value="Rita Round Biscuits">Rita Round Biscuits</option>
+            <option value="Royal Cola">Royal Cola</option>
+            <option value="Select Vanilla Ice Cream">Select Vanilla Ice Cream</option>
+            <option value="Silver Duck Soy Sauce">Silver Duck Soy Sauce</option>
+            <option value="Venus Chocolate Bars">Venus Chocolate Bars</option>
+          </select>
         <div class="form-group">
           <input type="number" name="quantity" placeholder="Input quantity" class="form-control">
         </div>
@@ -38,7 +44,7 @@
       </form>
       <form action="/saleslog">
         <button type="submit" class="btn btn-primary">Go to Sales Log</button>
-
+      </form>
   </body>
 </html>
 <BR>

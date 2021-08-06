@@ -127,12 +127,20 @@ purchase_receipts = {}
 
 def get_sales_receipts():
     for filename in os.listdir(path):
-        sales_receipts[filename] = f"Receipts_Folder/Sales Receipts/{filename}"
+        sales_receipts[filename] = "Receipts_Folder/Sales Receipts/"+filename
     return sales_receipts
 def get_purchase_receipts():
     for filename in os.listdir(path2):
-        purchase_receipts[filename] = f"Receipts_Folder/Purchase Receipts/{filename}"
+        purchase_receipts[filename] = "Receipts_Folder/Purchase Receipts/"+filename
     return purchase_receipts
 
+<<<<<<< HEAD
 #Read Receipt Files
 #def read_receipt(filepath):
+=======
+#Read Receipt Files 
+def read_receipt(filepath):
+    with open(filepath,"r") as f:
+        lines = f.read()
+    return lines
+>>>>>>> f9fe5780df5ac63dc925abc900f455d7d4c5f18d

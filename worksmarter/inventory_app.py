@@ -101,10 +101,9 @@ def currentinventory():
 def deliveryconfirmation():
     return render_template("deliveryconfirmation.html", page="delivery confirmation")
 
-#@app.route('/purchasereceiptsmaker')
-#def purchasereceiptsmaker():
+@app.route('/salesreceiptsmaker')
+def purchasereceiptsmaker():
 
-#    return render_template(,page="Purchase Receipt Maker")
-#    return render_template("purchasereceiptsmaker.html",page="PuchaserReceiptsMaker")
+    return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
 if __name__ == '__main__':
     app.run(debug=True)

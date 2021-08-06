@@ -1,0 +1,16 @@
+{% include "header.html" %}
+      <h1>Sales Receipt Maker</h1>
+      <form action="/order_input" method="POST">
+        
+          <input type="text" name="date" placeholder="mm/dd/yyyy">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <form action="/saleslog">
+        <button type="submit" class="btn btn-primary">Go to Sales Log</button>
+      </form>
+  </body>
+</html>
+<BR>
+<BR>
+<BR>
+{% include "footer.html" %}

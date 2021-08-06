@@ -122,7 +122,8 @@ def salesrecprg():
 @app.route('/reports', methods=["GET","POST"])
 def reports():
     lp_model.Report_Generator()
-    return render_template("reports_page.html",page="reports_page")
+    product_list=db.product_list
+    return render_template("reports_page.html",page="reports_page",product_list=product_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

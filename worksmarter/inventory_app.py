@@ -79,12 +79,12 @@ def purchaselog():
 @app.route('/salesreceipt',methods=["GET","POST"])
 def receipt():
     sales_receipts = db.get_sales_receipts()
-    return render_template("salesreceipts.html", page="Receipt",sales_receipts=sales_receipts)
+    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
 
 @app.route('/purchasereceipt',methods=["GET","POST"])
 def receipt():
     purchase_receipts = db.get_purchase_receipts()
-    return render_template("purchasereceipts.html", page="Receipt",purchase_receipts=purchase_receipts)
+    return render_template("purchasereceipts.html", page="Purchase Receipt",purchase_receipts=purchase_receipts)
 
 @app.route("/receipt_reader",methods=["GET","POST"])
 def receipt_reader():
@@ -99,10 +99,12 @@ def currentinventory():
 
 @app.route('/deliveryconfirmation')
 def deliveryconfirmation():
-    return render_template("deliveryconfirmation.html", page="Receipt")
+    return render_template("deliveryconfirmation.html", page="delivery confirmation")
 
-@app.route('/purchasereceiptsmaker')
-def purchasereceiptsmaker():
-    return render_template("purchasereceiptsmaker.html",page="PuchaserReceiptsMaker")
+#@app.route('/purchasereceiptsmaker')
+#def purchasereceiptsmaker():
+
+#    return render_template(,page="Purchase Receipt Maker")
+#    return render_template("purchasereceiptsmaker.html",page="PuchaserReceiptsMaker")
 if __name__ == '__main__':
     app.run(debug=True)

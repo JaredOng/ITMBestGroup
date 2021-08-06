@@ -14,7 +14,10 @@ def get_user(username):
 #Sales Log Database
 g = open("Databases/Sales_Log.json")
 sales_log = json.load(g)
+
 def get_sales_log():
+    g = open("Databases/Sales_Log.json")
+    sales_log = json.load(g)
     sales_log_list = []
 
     sales_log_dict={}

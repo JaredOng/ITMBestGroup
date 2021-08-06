@@ -2,7 +2,7 @@ from flask import Flask,redirect
 from flask import render_template
 from flask import request
 from flask import session
-from datetime import datetime
+from datetime import date
 import ws_database as db
 import authentication
 import logging
@@ -47,7 +47,7 @@ def orderinput():
     store_pricing_list=db.get_store_pricing()
     if request.method == "POST":
         req = request.form
-        date = datetime.now().strftime("%m/%d/%Y")
+        date = date.today().strftime("%m/%d/%Y")
         product_name = req.get("product")
         qty = int(req.get("quantity"))
         price = db.get_price(product_name)

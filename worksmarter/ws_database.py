@@ -139,3 +139,15 @@ def read_receipt(filepath):
     with open(filepath,"r") as f:
         lines = f.read()
     return lines
+
+p = open("Databases/IdealProductList.json")
+optimal_stock = json.load(p)
+def get_optimal_quantity():
+    optimal_stock_list=[]
+    optimal_stock_dict={}
+    for i in optimal_stock:
+        optimal_stock_dict[i]={"product":i,"quantity":optimal_stock[i]}
+        product=optimal_stock_dict[i]
+        optimal_stock_list.append(product)
+
+    return optimal_stock_list

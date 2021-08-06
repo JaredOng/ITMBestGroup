@@ -1,7 +1,17 @@
 {% include "header.html" %}
     <h2>Order Stocks</h2>
+    <style>
+    table, th, td {
+    border: 2px solid black;
+    }
 
-<a>{{stock_table}}</a>
+    </style>
+        <table style="width:30%">
+          <tr><th>Product</th><th>Optimal Quantity</th></tr>
+          {% for product in optimal_stock_list %}
+          <tr><td>{{product["product"]}}</td><td>{{product["quantity"]}}</td></tr>
+          {% endfor %}
+        </table>
 
   </body>
 </html>

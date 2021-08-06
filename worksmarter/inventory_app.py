@@ -107,8 +107,9 @@ def currentinventory():
 
 @app.route('/orderstocks')
 def orderstocks():
-    stock_table=lp_model.LP_Model()
-    return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
+    lp.LP_Model()
+    optimal_stock_list=db.get_optimal_quantity()
+    return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list)
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():

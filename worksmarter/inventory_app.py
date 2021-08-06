@@ -77,12 +77,12 @@ def purchaselog():
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
 @app.route('/salesreceipt',methods=["GET","POST"])
-def receipt():
+def salesreceipt():
     sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
 
 @app.route('/purchasereceipt',methods=["GET","POST"])
-def receipt():
+def purchasereceipt():
     purchase_receipts = db.get_purchase_receipts()
     return render_template("purchasereceipts.html", page="Purchase Receipt",purchase_receipts=purchase_receipts)
 
@@ -102,7 +102,7 @@ def deliveryconfirmation():
     return render_template("deliveryconfirmation.html", page="delivery confirmation")
 
 @app.route('/salesreceiptsmaker')
-def purchasereceiptsmaker():
+def salesreceiptsmaker():
 
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
 if __name__ == '__main__':

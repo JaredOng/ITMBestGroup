@@ -63,7 +63,6 @@ def Profit_list_func():
                 pass
     return Profit_list
 
-
 def To_Purchase_func():
     import json
     To_Purchase = {}

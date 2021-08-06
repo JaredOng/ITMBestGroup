@@ -118,16 +118,15 @@ def currentinventory():
     current_inventory_list = db.get_current_inventory()
     return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
 
-<<<<<<< HEAD
+
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
-=======
+
 @app.route('/orderstocks')
 def orderstocks():
     stock_table=lp_model.LP_Model()
     return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
->>>>>>> a6388aad3d15defd5c3abeb605280c5ab08bf8fa
 
 @app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():

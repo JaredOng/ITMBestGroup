@@ -38,7 +38,6 @@ def login():
 def auth():
     username = request.form.get('username')
     password = request.form.get('password')
-
     is_successful, admin = authentication.login(username,password)
     app.logger.info("%s", is_successful)
     if(is_successful):
@@ -123,6 +122,11 @@ def salesrecprg():
         receipt_writer.Receipt_Maker(kind,day)
         sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+
+@app.route('/reports', methods=["GET","POST"])
+def reports():
+    lp_model.Report_Generator()
+    return render_template("reports_page.html",page="reports_page")
 
 if __name__ == '__main__':
     app.run(debug=True)

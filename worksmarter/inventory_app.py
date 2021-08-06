@@ -4,6 +4,7 @@ from flask import request
 from flask import session
 from datetime import date
 import ws_database as db
+import receipt_writer as rw
 import authentication
 import logging
 import os
@@ -49,15 +50,16 @@ def orderinput():
     store_pricing_list=db.get_store_pricing()
     if request.method == "POST":
         req = request.form
-        date = date.today().strftime("%m/%d/%Y")
+        d = date.today().strftime("%m/%d/%Y")
         product_name = req.get("product")
         qty = int(req.get("quantity"))
         price = db.get_price(product_name)
         subtotal = qty*price
         qty<= db.get_product_inventory(product_name)
-        db.input_sales(date,product_name,qty,price,subtotal)
+        db.input_sales(d,product_name,qty,price,subtotal)
         db.subtract_current_inventory(product_name,qty)
-        db.add_sr_content(date,product_name,qty)
+        db.add_sr_content(d,product_name,qty)
+        rw.Receipt_Maker()
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
 
 

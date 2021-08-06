@@ -18,7 +18,13 @@ table, th, td {
         {% endfor %}
       </table>
 
+      <h2>Sales Receipt Maker</h2>
 
+      <form action="/salesrecprg" method="POST">
+          <input type="text" name="day" placeholder="mm/dd/yyyy">
+          <input type="hidden" name="kind" value="Sales">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 
 
 

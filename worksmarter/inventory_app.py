@@ -109,10 +109,6 @@ def orderstocks():
     stock_table=lp_model.LP_Model()
     return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
 
-@app.route('/salesreceiptsmaker')
-def salesreceiptsmaker():
-    return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
-
 @app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():
     if request.method=="POST":

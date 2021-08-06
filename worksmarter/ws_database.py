@@ -27,10 +27,11 @@ def get_sales_log():
     return sales_log_list
 
 #Purchase Log Database
-h = open("Databases/Purchase_Log.json")
-purchase_log = json.load(h)
 
 def get_purchase_log():
+    h = open("Databases/Purchase_Log.json")
+    purchase_log = json.load(h)
+
     purchase_log_list = []
 
     purchase_log_dict={}

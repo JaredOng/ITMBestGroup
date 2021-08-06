@@ -1,5 +1,5 @@
 #Guide to Receipt Content:
-# Receipt Content - a temp dict to hold the content of the receipts 
+# Receipt Content - a temp dict to hold the content of the receipts
 # Purchase Receipt Content Format:
 #{
 #    "kind":"Purchase",
@@ -21,24 +21,27 @@ from datetime import date
 
 #Receipt Maker Def
 def Receipt_Maker():
-    
+
     #Supplier Database
     g = open("worksmarter/Databases/Supplier_Database.json")
     sdb = json.load(g)
 
-    #Product List 
+    #Product List
     n = open('worksmarter/Databases/Product_List.json')
     pdb = json.load(n)
 
-    #Receipt Content 
-    m = open('worksmarter/Databases/Receipt_Content.json')
-    rdb = json.load(m)
+    #Receipt Content
+    m = open('worksmarter/Databases/Purchase_Receipt_Content.json')
+    prdb = json.load(m)
+
+    p = open('worksmarter/Databases/Sales_Receipt_Content.json')
+    prdb = json.load(p)
 
     #General Functions
     Total = 0
     today = date.today()
     today = today.strftime("%m-%d-%y")
-    
+
     #Purchase Receipt
     if rdb['kind'] == "Purchase":
         #Header
@@ -50,7 +53,7 @@ def Receipt_Maker():
         f.write("---------------------------------------------")
         f.write("\n")
         f.close
-        
+
         #Body
         with open(f"worksmarter/Receipts Folder/Purchase Receipts/{today}_{rdb['Supplier']}_Purchase_Receipt.txt","a") as f:
             for i in rdb['Order'].keys():
@@ -65,7 +68,7 @@ def Receipt_Maker():
                 while len(str(Qty)) < (10-len(Subtotal)):
                     Qty += " "
                 f.write(f"{Product}\t{Qty}\t{Subtotal}\n")
-    
+
         #Footer
         f = open(f"worksmarter/Receipts Folder/Purchase Receipts/{today}_{rdb['Supplier']}_Purchase_Receipt.txt","a")
         f.write("---------------------------------------------\n")
@@ -82,7 +85,7 @@ def Receipt_Maker():
         f.write("---------------------------------------------")
         f.write("\n")
         f.close
-        
+
         #Body
         with open(f"worksmarter/Receipts Folder/Sales Receipts/{today}_Sales_Receipt.txt","a") as f:
             for i in rdb['Order'].keys():
@@ -97,13 +100,13 @@ def Receipt_Maker():
                 while len(str(Qty)) < (10-len(Subtotal)):
                     Qty += " "
                 f.write(f"{Product}\t{Qty}\t{Subtotal}\n")
-    
+
         #Footer
         f = open(f"worksmarter/Receipts Folder/Sales Receipts/{today}_Sales_Receipt.txt","a")
         f.write("---------------------------------------------\n")
         Last_Line = "Total    :"
         while len(Last_Line)< (45-len(str(Total))):
             Last_Line += " "
-        f.write(f"{Last_Line}{Total}")   
-  
+        f.write(f"{Last_Line}{Total}")
+
 Receipt_Maker()

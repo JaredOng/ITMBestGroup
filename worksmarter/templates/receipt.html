@@ -1,8 +1,19 @@
-{% include "header.html" %}
-    <a href='/user_interface_page'>Back</a>
+<html>
+  <header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <style>
+      .footer {
+        font-size:10px;
+      }
+    </style>
+  </header>
+  <body style="background-color:96B7D3;">
+    Welcome, {{ session["admin"]["first_name"] }}.
+    <a href='/user_interface_page'>User interface</a> | <a href='/saleslog'>Sales Log</a> |
+    <a href='/purchaselog'>Purcahase Log</a> |
+    <a href='/order_input'>Order input</a> | <a href='/receipt'>Receipt</a> | <br>
     <p/>
     <h1>Company Receipts</h1>
- </form>
  <style>
   table, th, td {
     border: 2px solid black;

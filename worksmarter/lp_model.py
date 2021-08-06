@@ -83,12 +83,8 @@ def To_Purchase_func():
     next_days = json.load(f)
     f = open("Databases/Current_Inventory.json")
     Current_Inventory = json.load(f)
-    f = open("Databases/Capacity_Inventory_List.json")
-    Capacity_Inventory_List = json.load(f)
     To_Purchase = {}
     for item in next_days:
-        if next_days[item] - Current_Inventory[item] >= Capacity_Inventory_List[item]
-            To_Purchase[item] = Capacity_Inventory_List[item]
         if next_days[item] - Current_Inventory[item] >= 0:
             To_Purchase[item] = next_days[item] - Current_Inventory[item]
         else:

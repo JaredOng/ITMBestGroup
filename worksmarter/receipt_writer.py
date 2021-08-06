@@ -35,26 +35,19 @@ sdb = json.load(g)
 n = open('Databases/Product_List.json')
 pdb = json.load(n)
 
-#Purchase Receipt Content
-m = open('Databases/Purchase_Receipt_Content.json')
-prdb = json.load(m)
-#Sales Receipt Content
-p = open('Databases/Sales_Receipt_Content.json')
-srdb = json.load(p)
-#Purchase Receipt Content
-m = open('Databases/Purchase_Receipt_Content.json')
-prdb = json.load(m)
-
-#Sales Receipt Content
-p = open('Databases/Sales_Receipt_Content.json')
-srdb = json.load(p)
-
 #Sales Log
 z = open("Databases/Sales_Log.json")
 sl = json.load(z)
 
 #Receipt Maker Def
 def Receipt_Maker(kind,day):
+
+    #Purchase Receipt Content
+    m = open('Databases/Purchase_Receipt_Content.json')
+    prdb = json.load(m)
+    #Sales Receipt Content
+    p = open('Databases/Sales_Receipt_Content.json')
+    srdb = json.load(p)
 
     #General Functions
     Total = 0

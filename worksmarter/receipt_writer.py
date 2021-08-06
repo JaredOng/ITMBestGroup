@@ -107,5 +107,3 @@ def Receipt_Maker():
     while len(Last_Line)< (45-len(str(Total))):
         Last_Line += " "
     g.write(f"{Last_Line}{Total}")
-
-Receipt_Maker()

@@ -38,7 +38,6 @@ def login():
 def auth():
     username = request.form.get('username')
     password = request.form.get('password')
-
     is_successful, admin = authentication.login(username,password)
     app.logger.info("%s", is_successful)
     if(is_successful):
@@ -119,9 +118,16 @@ def currentinventory():
     current_inventory_list = db.get_current_inventory()
     return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
 
+<<<<<<< HEAD
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
+=======
+@app.route('/orderstocks')
+def orderstocks():
+    stock_table=lp_model.LP_Model()
+    return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
+>>>>>>> a6388aad3d15defd5c3abeb605280c5ab08bf8fa
 
 @app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():
@@ -132,6 +138,12 @@ def salesrecprg():
         receipt_writer.Receipt_Maker(kind,day)
         sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+
+@app.route('/reports', methods=["GET","POST"])
+def reports():
+    lp_model.Report_Generator()
+    product_list=db.product_list
+    return render_template("reports_page.html",page="reports_page",product_list=product_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

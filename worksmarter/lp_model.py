@@ -4,21 +4,16 @@ import matplotlib.pyplot as plt
 import json
 from sklearn.linear_model import LinearRegression
 
-f = open("Databases/Capacity_Inventory_List.json")
-Capacity_Inventory_List = json.load(f)
-f = open("Databases/Sales_Log.json")
-sales_log = json.load(f)
-f = open("Databases/Product_List.json")
-Product_List = json.load(f)
-f = open("Databases/Supplier_Database.json")
-Supplier_Database = json.load(f)
-f = open("Databases/IdealProductList.json")
-next_days = json.load(f)
-f = open("Databases/Current_Inventory.json")
-Current_Inventory = json.load(f)
+
+
+
 
 #LP MODEL
 def LP_Model():
+    f = open("Databases/Capacity_Inventory_List.json")
+    Capacity_Inventory_List = json.load(f)
+    f = open("Databases/Sales_Log.json")
+    sales_log = json.load(f)
     next_day = {}
     for items in Capacity_Inventory_List:
         graph_items = []
@@ -44,6 +39,10 @@ def LP_Model():
     return next_day
 
 def Report_Generator():
+    f = open("Databases/Capacity_Inventory_List.json")
+    Capacity_Inventory_List = json.load(f)
+    f = open("Databases/Sales_Log.json")
+    sales_log = json.load(f)
     for items in Capacity_Inventory_List:
         graph_items = []
         temp = 0
@@ -61,11 +60,15 @@ def Report_Generator():
         ax.set_xlabel("Week #")
         ax.set_ylabel("Quantity of Product")
         ax.set_title(items+ " Sales History")
-        fig.savefig("Product_Graphs/LP_"+ items + ".png")
+        fig.savefig("static/LP_"+ items + ".png")
         plt.close(fig)
 
 
 def Profit_list_func():
+    f = open("Databases/Product_List.json")
+    Product_List = json.load(f)
+    f = open("Databases/Supplier_Database.json")
+    Supplier_Database = json.load(f)
     Profit_list = {}
     for items in Product_List:
         for supplier in Supplier_Database:

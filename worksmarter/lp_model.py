@@ -83,10 +83,14 @@ optimal_stock = json.load(f)
 f = open("Databases/Current_Inventory.json")
 Current_Inventory = json.load(f)
 def To_Purchase_func():
+    f = open("Databases/IdealProductList.json")
+    next_days = json.load(f)
+    f = open("Databases/Current_Inventory.json")
+    Current_Inventory = json.load(f)
     To_Purchase = {}
-    for item in optimal_stock:
-        if optimal_stock[item] - Current_Inventory[item] >= 0:
-            To_Purchase[item] = optimal_stock[item] - Current_Inventory[item]
+    for item in next_days:
+        if next_days[item] - Current_Inventory[item] >= 0:
+            To_Purchase[item] = next_days[item] - Current_Inventory[item]
         else:
             To_Purchase[item] = 0
     purchase_list=[]

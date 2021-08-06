@@ -76,11 +76,15 @@ def purchaselog():
     purchase_log_list = db.get_purchase_log()
     return render_template("purchaselog.html", page="Purchase Log",purchase_log_list=purchase_log_list)
 
-@app.route('/receipt',methods=["GET","POST"])
+@app.route('/salesreceipt',methods=["GET","POST"])
 def receipt():
     sales_receipts = db.get_sales_receipts()
+    return render_template("salesreceipts.html", page="Receipt",sales_receipts=sales_receipts)
+
+@app.route('/purchasereceipt',methods=["GET","POST"])
+def receipt():
     purchase_receipts = db.get_purchase_receipts()
-    return render_template("receipt.html", page="Receipt",sales_receipts=sales_receipts,purchase_receipts=purchase_receipts)
+    return render_template("purchasereceipts.html", page="Receipt",purchase_receipts=purchase_receipts)
 
 @app.route("/receipt_reader",methods=["GET","POST"])
 def receipt_reader():

@@ -58,10 +58,9 @@ def orderinput():
         qty<= db.get_product_inventory(product_name)
         db.input_sales(d,product_name,qty,price,subtotal)
         db.subtract_current_inventory(product_name,qty)
-        day = date.today().strftime("%m/%d/%Y")
         kind = "Sales"
-        receipt_writer.sales_content_writer(day)
-        receipt_writer.Receipt_Maker(kind,day)
+        rw.sales_content_writer(d)
+        rw.Receipt_Maker(kind,d)
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
 
 

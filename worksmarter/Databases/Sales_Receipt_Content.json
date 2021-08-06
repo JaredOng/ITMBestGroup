@@ -1,35 +1,19 @@
 {
-<<<<<<< HEAD
-    "kind": "Sales",
-    "date": "08/06/2021",
-    "Order": {
-        "Royal Cola": 1
-        
-    "07-29-2021": {
-        "Brava Biscuits": {
-            "Quantity": 1,
-            "Price": 570,
-            "Subtotal": 570
+    "08-06-2021": {
+        "Royal Cola": {
+            "Quantity": 3,
+            "Price": 2270,
+            "Subtotal": 6810
         },
-        "Select Vanilla Ice Cream": {
-            "Quantity": 1,
-            "Price": 2500,
-            "Subtotal": 2500
-        },
-        "Datu Itim Vinegar": {
-            "Quantity": 1,
-            "Price": 2000,
-            "Subtotal": 2000
+        "Dairy King Ice Cream": {
+            "Quantity": 2,
+            "Price": 3700,
+            "Subtotal": 7400
         },
         "Mrs. Chips": {
-            "Quantity": 1,
+            "Quantity": 5,
             "Price": 1800,
-            "Subtotal": 1800
-        },
-        "Bullhead Milk": {
-            "Quantity": 3,
-            "Price": 2500,
-            "Subtotal": 7500
+            "Subtotal": 9000
         }
     }
 }

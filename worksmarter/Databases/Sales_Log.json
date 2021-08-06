@@ -2786,10 +2786,20 @@
         }
     },
     "08/06/2021": {
-        "Beach Fabric Conditioner": {
-            "Quantity": 45,
-            "Price": 2500,
-            "Subtotal": 112500
+        "Royal Cola": {
+            "Quantity": 3,
+            "Price": 2270,
+            "Subtotal": 6810
+        },
+        "Dairy King Ice Cream": {
+            "Quantity": 2,
+            "Price": 3700,
+            "Subtotal": 7400
+        },
+        "Mrs. Chips": {
+            "Quantity": 5,
+            "Price": 1800,
+            "Subtotal": 9000
         }
     }
 }

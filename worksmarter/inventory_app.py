@@ -82,7 +82,8 @@ def receipt():
 
 @app.route("/receipt_reader",methods=["GET","POST"])
 def receipt_reader():
-    return render_template("receipt_reader.html",page="Receipt_Reader")
+    receipt = request.form.get('receipt')
+    return render_template("receipt_reader.html",page="Receipt_Reader",receipt=receipt)
 
 @app.route('/currentinventory')
 def currentinventory():

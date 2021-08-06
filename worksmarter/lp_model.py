@@ -61,7 +61,7 @@ def Report_Generator():
         ax.set_xlabel("Week #")
         ax.set_ylabel("Quantity of Product")
         ax.set_title(items+ " Sales History")
-        fig.savefig("Product_Graphs/LP_"+ items + ".png")
+        fig.savefig("static/LP_"+ items + ".png")
         plt.close(fig)
 
 

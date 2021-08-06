@@ -42,13 +42,12 @@ def LP_Model():
         else:
             next_day[items] = 0
 
-        # fig, ax = plt.subplots(figsize=(8,4), dpi=100)
-        # ax.plot(range(len(graph_items)), graph_items )
-        # ax.set_xlabel("Week #")
-        # ax.set_ylabel("Quantity of Product")
-        # ax.set_title(items+ " Sales History")
-
-        # fig.savefig("Product_Graphs/LP_"+ items + ".png")
+        fig, ax = plt.subplots(figsize=(8,4), dpi=100)
+        ax.plot(range(len(graph_items)), graph_items )
+        ax.set_xlabel("Week #")
+        ax.set_ylabel("Quantity of Product")
+        ax.set_title(items+ " Sales History")
+        fig.savefig("Product_Graphs/LP_"+ items + ".png")
     with open("Databases/IdealProductList.json", "w") as filez: #write
         json.dump(next_day, filez)
     return next_day

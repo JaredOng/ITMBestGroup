@@ -8,6 +8,8 @@ import receipt_writer as rw
 import authentication
 import logging
 import os
+import receipt_writer
+import datetime
 
 app = Flask(__name__)
 
@@ -106,7 +108,16 @@ def deliveryconfirmation():
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():
-
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
+
+@app.route('/salesrecprg')
+def salesrecprg():
+    day = request.form.get('date')
+    kind = request.form.get('kind')
+    receipt_writer.sales_content_writer(date)
+    receipt_writer.Receipt_Maker(kind)
+    sales_receipts = db.get_sales_receipts()
+    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+
 if __name__ == '__main__':
     app.run(debug=True)

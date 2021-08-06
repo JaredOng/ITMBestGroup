@@ -21,7 +21,11 @@ navbar = """
          <p/>
          """
 
-@app.route('/',methods=["GET","POST"])
+@app.route('/')
+def welcome():
+    return render_template("home.html", page="Login")
+
+@app.route('/login',methods=["GET","POST"])
 def login():
     return render_template("login.html", page="Login")
 
@@ -48,11 +52,9 @@ def orderinput():
         qty = int(req.get("quantity"))
         price = db.get_price(product_name)
         subtotal = qty*price
-        if qty<= db.get_product_inventory(product_name):
-            db.input_sales(date,product_name,qty,price,subtotal)
-            db.subtract_current_inventory(product_name,qty)
-        else:
-            print("ENGK")
+        qty<= db.get_product_inventory(product_name)
+        db.input_sales(date,product_name,qty,price,subtotal)
+        db.subtract_current_inventory(product_name,qty)
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
 
 

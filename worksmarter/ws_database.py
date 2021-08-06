@@ -119,7 +119,7 @@ def subtract_current_inventory(product_name,qty):
 
     with open("Databases/Current_Inventory.json","w")as c_i:
         json.dump(current_inventory,c_i,indent=4)
-#Receipt Files 
+#Receipt Files
 path = os.getcwd()+"/Receipts_Folder/Sales Receipts"
 path2 = os.getcwd()+"/Receipts_Folder/Purchase Receipts"
 sales_receipts = {}
@@ -134,8 +134,13 @@ def get_purchase_receipts():
         purchase_receipts[filename] = "Receipts_Folder/Purchase Receipts/"+filename
     return purchase_receipts
 
+<<<<<<< HEAD
+#Read Receipt Files
+#def read_receipt(filepath):
+=======
 #Read Receipt Files 
 def read_receipt(filepath):
     with open(filepath,"r") as f:
         lines = f.read()
     return lines
+>>>>>>> f9fe5780df5ac63dc925abc900f455d7d4c5f18d

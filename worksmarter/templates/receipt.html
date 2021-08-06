@@ -15,13 +15,13 @@
           <tr><th>Sales Receipts</th></tr>
           {% for log in sales_receipts.keys() %}
           <form action="/receipt_reader" method="POST" id='receipt_form'>
-            <tr><td><button type="submit" name="receipt" value="/Receipts_Folder/Sales Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
+            <tr><td><button type="submit" name="receipt" value="Receipts_Folder/Sales Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
           </form>
         {% endfor %}
           <tr><th>Purchase Receipts</th></tr>
           {% for log in purchase_receipts.keys() %}
           <form action="/receipt_reader" method="POST" id='receipt_form'>
-            <tr><td><button type="submit" name="receipt" value="/Receipts_Folder/Purchase Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
+            <tr><td><button type="submit" name="receipt" value="Receipts_Folder/Purchase Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
           </form>
         {% endfor %}
         </table>

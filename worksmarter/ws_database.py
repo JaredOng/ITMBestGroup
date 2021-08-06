@@ -140,17 +140,3 @@ def read_receipt(filepath):
     with open(filepath,"r") as f:
         lines = f.read()
     return lines
-
-p = open("Databases/Sales_Receipt_Content.json")
-sr_content = json.load(p)
-
-def add_sr_content(date,product_name,qty):
-    if date == sr_content["date"]:
-        sr_content["Order"][product_name]=qty
-    elif date != sr_content["date"]:
-        sr_content["date"]=date
-        sr_content["Order"]={}
-        sr_content["Order"][product_name]=qty
-
-    with open("Databases/Sales_Receipt_Content.json","w") as src:
-        json.dump(sr_content,src,indent=4)

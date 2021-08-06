@@ -2784,5 +2784,12 @@
             "Price": 750,
             "Subtotal": 5250
         }
+    },
+    "08/06/2021": {
+        "Beach Fabric Conditioner": {
+            "Quantity": 45,
+            "Price": 2500,
+            "Subtotal": 112500
+        }
     }
 }

@@ -49,7 +49,7 @@ def LP_Model():
         ax.set_title(items+ " Sales History")
 
         fig.savefig("Product_Graphs/LP_"+ items + ".png")
-    with open("IdealProductList.json", "w") as filez: #write
+    with open("Databases/IdealProductList.json", "w") as filez: #write
         json.dump(next_day, filez)
     return next_day
 

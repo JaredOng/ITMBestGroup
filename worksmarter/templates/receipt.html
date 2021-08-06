@@ -1,16 +1,4 @@
-<html>
-  <header>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
-    <style>
-      .footer {
-        font-size:10px;
-      }
-    </style>
-  </header>
-  <body style="background-color:96B7D3;">
-    Welcome, {{ session["admin"]["first_name"] }}.
-    <a href='/logout'>Logout</a>
-    <BR>
+{% include "header.html" %}
     <a href='/user_interface_page'>Back</a>
     <p/>
     <h1>Company Receipts</h1>
@@ -26,14 +14,17 @@
           <col style="width:50%">
           <tr><th>Sales Receipts</th></tr>
           {% for log in sales_receipts.keys() %}
-        <tr><td style="text-align:center"><a href="">{{sales_receipts[log]}}</a></td></tr>
+          <form action="/receipt_reader" method="POST" id='receipt_form'>
+            <tr><td><button type="submit" name="receipt" value="/Receipts_Folder/Sales Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
+          </form>
         {% endfor %}
           <tr><th>Purchase Receipts</th></tr>
           {% for log in purchase_receipts.keys() %}
-        <tr><td style="text-align:center"><a href="">{{purchase_receipts[log]}}</a></td></tr>
+          <form action="/receipt_reader" method="POST" id='receipt_form'>
+            <tr><td><button type="submit" name="receipt" value="/Receipts_Folder/Purchase Receipts/{{log}}" class="btn-link">{{log[:-4]}}</button></td></tr>
+          </form>
         {% endfor %}
         </table>
-    
     </body>
   </body>
 </html>

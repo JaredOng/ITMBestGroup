@@ -95,10 +95,7 @@ def price_change(product,value):
     with open('Databases/Product_List.json',"w") as d:
         json.dump(product_list,d,indent=4)
 
-<<<<<<< HEAD
-=======
 #Current Inventory
->>>>>>> 95e325f3cc3e371e7e48c55c636e10eb84f08850
 o = open("Databases/Current_Inventory.json")
 current_inventory = json.load(o)
 
@@ -112,7 +109,7 @@ def get_current_inventory():
         current_inventory_list.append(product)
     return current_inventory_list
 
-<<<<<<< HEAD
+
 def get_product_inventory(product_name):
     quantity=current_inventory[product_name]
     return quantity
@@ -122,18 +119,20 @@ def subtract_current_inventory(product_name,qty):
 
     with open("Databases/Current_Inventory.json","w")as c_i:
         json.dump(current_inventory,c_i,indent=4)
-=======
 #Receipt Files 
 path = os.getcwd()+"/Receipts_Folder/Sales Receipts"
 path2 = os.getcwd()+"/Receipts_Folder/Purchase Receipts"
 sales_receipts = {}
 purchase_receipts = {}
+
 def get_sales_receipts():
     for filename in os.listdir(path):
-        sales_receipts[filename] = filename[:-4]
+        sales_receipts[filename] = f"Receipts_Folder/Sales Receipts/{filename}"
     return sales_receipts
 def get_purchase_receipts():
     for filename in os.listdir(path2):
-        purchase_receipts[filename] = filename[:-4]
+        purchase_receipts[filename] = f"Receipts_Folder/Purchase Receipts/{filename}"
     return purchase_receipts
->>>>>>> 95e325f3cc3e371e7e48c55c636e10eb84f08850
+
+#Read Receipt Files 
+#def read_receipt(filepath):

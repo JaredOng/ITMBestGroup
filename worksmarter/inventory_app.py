@@ -78,8 +78,12 @@ def purchaselog():
 def receipt():
     sales_receipts = db.get_sales_receipts()
     purchase_receipts = db.get_purchase_receipts()
-
     return render_template("receipt.html", page="Receipt",sales_receipts=sales_receipts,purchase_receipts=purchase_receipts)
+
+@app.route("/receipt_reader",methods=["GET","POST"])
+def receipt_reader():
+    receipt = request.form.get('receipt')
+    return render_template("receipt_reader.html",page="Receipt_Reader",receipt=receipt)
 
 @app.route('/currentinventory')
 def currentinventory():

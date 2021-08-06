@@ -6,16 +6,16 @@ from sklearn.linear_model import LinearRegression
 
 f = open("Databases/Capacity_Inventory_List.json")
 Capacity_Inventory_List = json.load(f)
-f = open("Databases/Sales_Log.json")
-sales_log = json.load(f)
-f = open("Databases/Product_List.json")
-Product_List = json.load(f)
-f = open("Databases/Supplier_Database.json")
-Supplier_Database = json.load(f)
-f = open("Databases/IdealProductList.json")
-next_days = json.load(f)
-f = open("Databases/Current_Inventory.json")
-Current_Inventory = json.load(f)
+g = open("Databases/Sales_Log.json")
+sales_log = json.load(g)
+h = open("Databases/Product_List.json")
+Product_List = json.load(h)
+i = open("Databases/Supplier_Database.json")
+Supplier_Database = json.load(i)
+j = open("Databases/IdealProductList.json")
+next_days = json.load(j)
+k = open("Databases/Current_Inventory.json")
+Current_Inventory = json.load(k)
 
 #LP MODEL
 def LP_Model():

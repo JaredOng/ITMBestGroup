@@ -40,7 +40,7 @@ z = open("Databases/Sales_Log.json")
 sl = json.load(z)
 
 #Receipt Maker Def
-def Receipt_Maker(kind):
+def Receipt_Maker(kind,day):
 
     #General Functions
     Total = 0
@@ -84,6 +84,8 @@ def Receipt_Maker(kind):
     elif kind == "Sales":
 #Sales Receipt
         Total=0
+        today = day
+        today = today.replace("/","-")
         #Header
         g = open(f"Receipts_Folder/Sales Receipts/{today}_Sales_Receipt.txt","w")
         g.write("---------------------------------------------\n") #40 Spaces
@@ -94,10 +96,10 @@ def Receipt_Maker(kind):
 
         #Body
         with open(f"Receipts_Folder/Sales Receipts/{today}_Sales_Receipt.txt","a") as g:
-            for i in srdb['Order'].keys():
-                Product = i
-                Qty = str(srdb["Order"][i])
-                Subtotal = str(int(Qty) * pdb[i])
+            for i in srdb[today].keys():
+                Product = str(i)
+                Qty = str(srdb[today][i]["Quantity"])
+                Subtotal = str(srdb[today][i]["Subtotal"])
                 Total += int(Subtotal)
                 while len(Product) < (31-len(Qty)):
                     Product += " "
@@ -120,5 +122,5 @@ def sales_content_writer(date):
     Date = date.replace("/","-")
     srdb = {}
     srdb[Date] = sl[date]
-    with open('Databases/Sales_Receipt_Content.json') as b:
+    with open('Databases/Sales_Receipt_Content.json','w') as b:
         json.dump(srdb,b,indent=4)

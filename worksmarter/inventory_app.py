@@ -110,13 +110,14 @@ def deliveryconfirmation():
 def salesreceiptsmaker():
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
 
-@app.route('/salesrecprg')
+@app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():
-    day = request.form.get('date')
-    kind = request.form.get('kind')
-    receipt_writer.sales_content_writer(day)
-    receipt_writer.Receipt_Maker(kind)
-    sales_receipts = db.get_sales_receipts()
+    if request.method=="POST":
+        day = request.form.get('day')
+        kind = request.form.get('kind')
+        receipt_writer.sales_content_writer(day)
+        receipt_writer.Receipt_Maker(kind,day)
+        sales_receipts = db.get_sales_receipts()
     return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
 
 if __name__ == '__main__':

@@ -59,7 +59,7 @@ def orderinput():
         db.input_sales(d,product_name,qty,price,subtotal)
         db.subtract_current_inventory(product_name,qty)
         db.add_sr_content(d,product_name,qty)
-        rw.Receipt_Maker()
+        rw.Receipt_Maker("Sales")
     return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
 
 

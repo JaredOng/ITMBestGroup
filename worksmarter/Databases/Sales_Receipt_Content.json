@@ -1,8 +1,7 @@
 {
     "kind": "Sales",
-    "date": "07/31/2021",
+    "date": "08/06/2021",
     "Order": {
-        "Royal Cola": 3,
-        "NPA Rice":7
+        "Royal Cola": 1
     }
 }

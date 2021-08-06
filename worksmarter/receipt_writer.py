@@ -131,4 +131,3 @@ def sales_content_writer(date):
     srdb[Date] = sl[date]
     with open('Databases/Sales_Receipt_Content.json','w') as b:
         json.dump(srdb,b,indent=4)
-

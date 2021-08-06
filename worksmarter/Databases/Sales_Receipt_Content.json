@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+    "kind": "Sales",
+    "date": "08/06/2021",
+    "Order": {
+        "Royal Cola": 1
+=======
     "07-29-2021": {
         "Brava Biscuits": {
             "Quantity": 1,
@@ -25,5 +31,6 @@
             "Price": 2500,
             "Subtotal": 7500
         }
+>>>>>>> 11d131b8d7cee6bb644f296c4ce74bce30569076
     }
 }

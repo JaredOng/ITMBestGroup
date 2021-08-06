@@ -80,6 +80,8 @@ def Profit_list_func():
 
 f = open("Databases/IdealProductList.json")
 optimal_stock = json.load(f)
+f = open("Databases/Current_Inventory.json")
+Current_Inventory = json.load(f)
 def To_Purchase_func():
     To_Purchase = {}
     for item in optimal_stock:

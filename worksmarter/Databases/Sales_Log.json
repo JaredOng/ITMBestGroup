@@ -2784,5 +2784,12 @@
             "Price": 750,
             "Subtotal": 5250
         }
+    },
+    "08/07/2021": {
+        "Bullhead Milk": {
+            "Quantity": 10,
+            "Price": 2500,
+            "Subtotal": 25000
+        }
     }
 }

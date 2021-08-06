@@ -1,19 +1,9 @@
 {
-    "08-06-2021": {
-        "Royal Cola": {
-            "Quantity": 3,
-            "Price": 2270,
-            "Subtotal": 6810
-        },
-        "Dairy King Ice Cream": {
-            "Quantity": 2,
-            "Price": 3700,
-            "Subtotal": 7400
-        },
-        "Mrs. Chips": {
-            "Quantity": 5,
-            "Price": 1800,
-            "Subtotal": 9000
+    "08-07-2021": {
+        "Bullhead Milk": {
+            "Quantity": 10,
+            "Price": 2500,
+            "Subtotal": 25000
         }
     }
 }

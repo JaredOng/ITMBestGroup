@@ -77,6 +77,8 @@ def orderstocks():
             price = db.get_purchase_price(product_name)
             subtotal = qty*price
             db.input_purchases(d,product_name,qty,price,subtotal)
+            db.add_current_inventory(product_name,qty)
+        return redirect('/purchaselog')
     return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list,purchase_list=purchase_list)
 
 @app.route('/logout')
@@ -122,11 +124,6 @@ def currentinventory():
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
-
-@app.route('/orderstocks')
-def orderstocks():
-    stock_table=lp_model.LP_Model()
-    return render_template("orderstocks.html", page="Order Stocks",stock_table=stock_table)
 
 @app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():

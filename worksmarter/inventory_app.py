@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask import session
 from datetime import date
+import lp_model as lp
 import ws_database as db
 import receipt_writer as rw
 import authentication
@@ -61,7 +62,7 @@ def orderinput():
         kind = "Sales"
         rw.sales_content_writer(d)
         rw.Receipt_Maker(kind,d)
-    return render_template("orderinput.html", page="Order input",store_pricing_list=store_pricing_list)
+    return render_template("orderinput.html", page="Customer Order Input",store_pricing_list=store_pricing_list)
 
 
 @app.route('/logout')
@@ -103,9 +104,9 @@ def currentinventory():
     current_inventory_list = db.get_current_inventory()
     return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
 
-@app.route('/deliveryconfirmation')
-def deliveryconfirmation():
-    return render_template("deliveryconfirmation.html", page="delivery confirmation")
+@app.route('/orderstocks')
+def orderstocks():
+    return render_template("orderstocks.html", page="Order Stocks")
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():

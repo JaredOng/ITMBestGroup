@@ -12,9 +12,9 @@ def get_user(username):
        return None
 
 #Sales Log Database
+g = open("Databases/Sales_Log.json")
+sales_log = json.load(g)
 def get_sales_log():
-    g = open("Databases/Sales_Log.json")
-    sales_log = json.load(g)
     sales_log_list = []
 
     sales_log_dict={}
@@ -27,10 +27,12 @@ def get_sales_log():
     return sales_log_list
 
 #Purchase Log Database
+h = open("Databases/Purchase_Log.json")
+purchase_log = json.load(h)
+
 def get_purchase_log():
-    h = open("Databases/Purchase_Log.json")
-    purchase_log = json.load(h)
     purchase_log_list = []
+
     purchase_log_dict={}
     for i,v in purchase_log.items():
         for k in v:
@@ -41,10 +43,10 @@ def get_purchase_log():
     return purchase_log_list
 
 #Supplier Database
+m = open("Databases/Supplier_Database.json")
+supplier_info = json.load(m)
 
 def get_supplier_pricing():
-    m = open("Databases/Supplier_Database.json")
-    supplier_info = json.load(m)
     supplier_pricing_list = []
 
     supplier_pricing_dict={}
@@ -58,16 +60,23 @@ def get_supplier_pricing():
     return supplier_pricing_list
 
 #Product Database
-
-def get_price(product_name):
-    n = open("Databases/Product_List.json")
-    product_list = json.load(n)
+n = open("Databases/Product_List.json")
+product_list = json.load(n)
+def get_sell_price(product_name):
     price = product_list[product_name]
     return price
 
+f = open("Databases/Supplier_Database.json")
+supplier_db=json.load(f)
+def get_purchase_price(product_name):
+    buy_price_dict={}
+    for i in supplier_db.values():
+        for k in i['Products_CostsPHP']:
+            buy_price_dict[k]=i['Products_CostsPHP'][k]
+    price = int(buy_price_dict[product_name])
+    return price
+
 def get_store_pricing():
-    n = open("Databases/Product_List.json")
-    product_list = json.load(n)
     store_pricing_list = []
     store_pricing_dict={}
     for i,j in product_list.items():
@@ -77,8 +86,6 @@ def get_store_pricing():
     return store_pricing_list
 
 def input_sales(date,product_name,qty,price,subtotal):
-    g = open("Databases/Sales_Log.json")
-    sales_log = json.load(g)
     if date not in sales_log:
         sales_log[date]={product_name:{"Quantity": qty,"Price": price, "Subtotal": subtotal}}
     else:
@@ -91,20 +98,31 @@ def input_sales(date,product_name,qty,price,subtotal):
     with open("Databases/Sales_log.json","w") as log:
         json.dump(sales_log,log,indent=4)
 
+def input_purchases(date,product_name,qty,price,subtotal):
+    if date not in purchase_log:
+        purchase_log[date]={product_name:{"Quantity": qty,"Price": price, "Subtotal": subtotal}}
+    else:
+        if product_name not in purchase_log[date]:
+            purchase_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
+        elif product_name in purchase_log[date]:
+            qty = qty + purchase_log[date][product_name]["Quantity"]
+            subtotal = qty*price
+            purchase_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
+    with open("Databases/Purchase_Log.json","w") as log:
+        json.dump(purchase_log,log,indent=4)
+
+
 def price_change(product,value):
-    n = open("Databases/Product_List.json")
-    product_list = json.load(n)
     product_list[product] = value
 
     with open('Databases/Product_List.json',"w") as d:
         json.dump(product_list,d,indent=4)
 
 #Current Inventory
-
+o = open("Databases/Current_Inventory.json")
+current_inventory = json.load(o)
 
 def get_current_inventory():
-    o = open("Databases/Current_Inventory.json")
-    current_inventory = json.load(o)
     current_inventory_list = []
 
     current_inventory_dict = {}
@@ -116,14 +134,10 @@ def get_current_inventory():
 
 
 def get_product_inventory(product_name):
-    o = open("Databases/Current_Inventory.json")
-    current_inventory = json.load(o)
     quantity=current_inventory[product_name]
     return quantity
 
 def subtract_current_inventory(product_name,qty):
-    o = open("Databases/Current_Inventory.json")
-    current_inventory = json.load(o)
     current_inventory[product_name]=current_inventory[product_name]-qty
 
     with open("Databases/Current_Inventory.json","w")as c_i:
@@ -149,3 +163,15 @@ def read_receipt(filepath):
     with open(filepath,"r") as f:
         lines = f.read()
     return lines
+
+p = open("Databases/IdealProductList.json")
+optimal_stock = json.load(p)
+def get_optimal_quantity():
+    optimal_stock_list=[]
+    optimal_stock_dict={}
+    for i in optimal_stock:
+        optimal_stock_dict[i]={"product":i,"quantity":optimal_stock[i]}
+        product=optimal_stock_dict[i]
+        optimal_stock_list.append(product)
+
+    return optimal_stock_list

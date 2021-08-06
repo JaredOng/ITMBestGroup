@@ -55,7 +55,7 @@ def orderinput():
         d = date.today().strftime("%m/%d/%Y")
         product_name = req.get("product")
         qty = int(req.get("quantity"))
-        price = db.get_price(product_name)
+        price = db.get_sell_price(product_name)
         subtotal = qty*price
         qty<= db.get_product_inventory(product_name)
         db.input_sales(d,product_name,qty,price,subtotal)
@@ -65,6 +65,20 @@ def orderinput():
         rw.Receipt_Maker(kind,d)
     return render_template("orderinput.html", page="Customer Order Input",store_pricing_list=store_pricing_list)
 
+@app.route('/orderstocks', methods=["GET","POST"])
+def orderstocks():
+    lp.LP_Model()
+    optimal_stock_list=db.get_optimal_quantity()
+    purchase_list=lp.To_Purchase_func()
+    if request.method == "POST":
+        d = date.today().strftime("%m/%d/%Y")
+        for i in purchase_list:
+            product_name=i["product"]
+            qty=int(i["quantity"])
+            price = db.get_purchase_price(product_name)
+            subtotal = qty*price
+            db.input_purchases(d,product_name,qty,price,subtotal)
+    return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list,purchase_list=purchase_list)
 
 @app.route('/logout')
 def logout():
@@ -104,12 +118,6 @@ def receipt_reader():
 def currentinventory():
     current_inventory_list = db.get_current_inventory()
     return render_template("currentinventory.html", page="Current Inventory",current_inventory_list=current_inventory_list)
-
-@app.route('/orderstocks')
-def orderstocks():
-    lp.LP_Model()
-    optimal_stock_list=db.get_optimal_quantity()
-    return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list)
 
 @app.route('/salesreceiptsmaker')
 def salesreceiptsmaker():

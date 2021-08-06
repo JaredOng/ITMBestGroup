@@ -75,12 +75,20 @@ def Profit_list_func():
                 pass
     return Profit_list
 
+f = open("Databases/IdealProductList.json")
+optimal_stock = json.load(f)
 def To_Purchase_func():
-    import json
     To_Purchase = {}
-    for item in next_days:
-        if next_days[item] - Current_Inventory[item] >= 0:
-            To_Purchase[item] = next_days[item] - Current_Inventory[item]
+    for item in optimal_stock:
+        if optimal_stock[item] - Current_Inventory[item] >= 0:
+            To_Purchase[item] = optimal_stock[item] - Current_Inventory[item]
         else:
             To_Purchase[item] = 0
-    return To_Purchase
+    purchase_list=[]
+    purchase_dict={}
+    for i in To_Purchase:
+        if To_Purchase[i]!=0:
+            purchase_dict[i]={"product":i,"quantity":To_Purchase[i]}
+            product=purchase_dict[i]
+            purchase_list.append(product)
+    return purchase_list

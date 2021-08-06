@@ -62,8 +62,18 @@ def get_supplier_pricing():
 #Product Database
 n = open("Databases/Product_List.json")
 product_list = json.load(n)
-def get_price(product_name):
+def get_sell_price(product_name):
     price = product_list[product_name]
+    return price
+
+f = open("Databases/Supplier_Database.json")
+supplier_db=json.load(f)
+def get_purchase_price(product_name):
+    buy_price_dict={}
+    for i in supplier_db.values():
+        for k in i['Products_CostsPHP']:
+            buy_price_dict[k]=i['Products_CostsPHP'][k]
+    price = int(buy_price_dict[product_name])
     return price
 
 def get_store_pricing():
@@ -87,6 +97,20 @@ def input_sales(date,product_name,qty,price,subtotal):
             sales_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
     with open("Databases/Sales_log.json","w") as log:
         json.dump(sales_log,log,indent=4)
+
+def input_purchases(date,product_name,qty,price,subtotal):
+    if date not in purchase_log:
+        purchase_log[date]={product_name:{"Quantity": qty,"Price": price, "Subtotal": subtotal}}
+    else:
+        if product_name not in purchase_log[date]:
+            purchase_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
+        elif product_name in purchase_log[date]:
+            qty = qty + purchase_log[date][product_name]["Quantity"]
+            subtotal = qty*price
+            purchase_log[date][product_name]={"Quantity": qty,"Price": price, "Subtotal": subtotal}
+    with open("Databases/Purchase_Log.json","w") as log:
+        json.dump(purchase_log,log,indent=4)
+
 
 def price_change(product,value):
     product_list[product] = value

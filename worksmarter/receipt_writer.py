@@ -27,13 +27,13 @@ sdb = json.load(g)
 n = open('Databases/Product_List.json')
 pdb = json.load(n)
 
-    #Supplier Database
-    g = open("Databases/Supplier_Database.json")
-    sdb = json.load(g)
+ #Supplier Database
+g = open("Databases/Supplier_Database.json")
+sdb = json.load(g)
 
-    #Product List
-    n = open('Databases/Product_List.json')
-    pdb = json.load(n)
+#Product List
+n = open('Databases/Product_List.json')
+pdb = json.load(n)
 
 #Purchase Receipt Content
 m = open('Databases/Purchase_Receipt_Content.json')

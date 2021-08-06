@@ -9,7 +9,7 @@
   </header>
   <body style="background-color:96B7D3;">
     <a href='/'>Home</a> | <a href='/user_interface_page'>User interface</a> | <a href='/saleslog'>Sales Log</a> |
-    <a href='/order_input'>Order input</a> | <a href='/receipt'>Receipt</a> | <a href='/purchaselog'>Purchase Log</a> | <a href='/currentinventory'>Current Log</a><br>
+    <a href='/order_input'>Order input</a> | <a href='/salesreceipts'>Sales Receipts</a> | <a href='/purchasereceipts'>Purchase Receipts</a> | <a href='/purchaselog'>Purchase Log</a> | <a href='/currentinventory'>Current Log</a><br>
     {% if session["admin"] is defined %}
         Welcome, {{ session["admin"]["first_name"] }}.
         <a href='/logout'>Logout</a>

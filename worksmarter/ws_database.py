@@ -135,7 +135,7 @@ def get_purchase_receipts():
         purchase_receipts[filename] = "Receipts_Folder/Purchase Receipts/"+filename
     return purchase_receipts
 
-#Read Receipt Files 
+#Read Receipt Files
 def read_receipt(filepath):
     with open(filepath,"r") as f:
         lines = f.read()

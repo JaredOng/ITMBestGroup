@@ -2784,5 +2784,22 @@
             "Price": 750,
             "Subtotal": 5250
         }
+    },
+    "08/06/2021": {
+        "Royal Cola": {
+            "Quantity": 18,
+            "Price": 2270,
+            "Subtotal": 40860
+        },
+        "Dairy King Ice Cream": {
+            "Quantity": 2,
+            "Price": 3700,
+            "Subtotal": 7400
+        },
+        "Mrs. Chips": {
+            "Quantity": 5,
+            "Price": 1800,
+            "Subtotal": 9000
+        }
     }
 }

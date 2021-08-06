@@ -1,7 +1,8 @@
 {
-    "kind":"Sales",
-    "date":"08/05/2021",
-    "Order":{
-        "Mayon Blue Salt": 5
+    "kind": "Sales",
+    "date": "07/31/2021",
+    "Order": {
+        "Royal Cola": 3,
+        "NPA Rice":7
     }
 }

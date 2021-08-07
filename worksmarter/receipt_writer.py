@@ -51,12 +51,11 @@ def Receipt_Maker(kind,day):
     #General Functions
     Total = 0
     today = date.today()
-    today = today.strftime("%m-%d-%y")
+    today = today.strftime("%m-%d-%Y")
     if kind == "Purchase":
     #Purchase Receipt
-        supplier = ""
-        for i in  prdb.keys():
-            
+        supplier =""
+        for i in  prdb[today].keys(): 
             if i  in sdb["Jared's Carriage Retail"]['Products_CostsPHP'].keys():
                 supplier = "Jared's Carriage Retail"
             elif i in sdb["Shan's Shampoo"]['Products_CostsPHP'].keys():
@@ -82,10 +81,10 @@ def Receipt_Maker(kind,day):
 
         #Body
         with open(f"Receipts_Folder/Purchase Receipts/{today}_{supplier}_Purchase_Receipt.txt","a") as f:
-            for i in prdb.keys():
+            for i in prdb[today].keys():
                 Product = i
-                Qty = str(prdb[i])
-                Subtotal = str(int(Qty) * sdb[prdb[supplier]]['Products_CostsPHP'][Product])
+                Qty = str(prdb[today][i])
+                Subtotal = str(int(Qty) * int(sdb[supplier]['Products_CostsPHP'][Product]))
                 Total += int(Subtotal)
                 while len(Product) < (31-len(Qty)):
                     Product += " "
@@ -160,25 +159,26 @@ def add_temp_orders(i):
 def order_sorter():
     j = open('Databases/temp_purchase_content.json')
     to = json.load(j)
+    to = to[0]
     e = open('Databases/Supplier_Database.json')
+    e = json.load(e)
     a ={}
-    b={}
+    b= {}
     c ={}
     g = {}
     h = {}
-    sdb = json.load(e)
-    for i in range(0,len(to[0])): #checks which product in the to list
-        for j in to[0][i].keys(): #send the item name
-                if j in e["Jared's Carriage Retail"]["Products_CostsPHP"].keys():
-                    a[j] = to[i][j]
-                elif j in e["Shan's Shampoo"]["Products_CostsPHP"].keys():
-                    b[j] = to[i][j]
-                elif j in e["Colyn's Cola"]["Products_CostsPHP"].keys():
-                    c[j] = to[i][j]
-                elif j in e["Reese's Milk and Cheese retail"]["Products_CostsPHP"].keys():
-                    g[j] = to[i][j]
-                elif j in e["Os' Sauce and salts"]["Products_CostsPHP"].keys():
-                    h[j] = to[i][j]
+    for i in range(0,len(to)): #checks which product in the to list
+            j = to[i]['product']
+            if j in e["Jared's Carriage Retail"]["Products_CostsPHP"].keys():
+                    a[j] = to[i]['quantity']
+            elif j in e["Shan's Shampoo"]["Products_CostsPHP"].keys():
+                    b[j] = to[i]['quantity']
+            elif j in e["Colyn's Cola"]["Products_CostsPHP"].keys():
+                        c[j] = to[i]['quantity']
+            elif j in e["Reese's Milk and Cheese retail"]["Products_CostsPHP"].keys():
+                    g[j] = to[i]['quantity']
+            elif j in e["Os' Sauce and salts"]["Products_CostsPHP"].keys():
+                    h[j] = to[i]['quantity']
     return a,b,c,g,h
 
 

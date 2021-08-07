@@ -34,8 +34,8 @@ def LP_Model():
             next_day[items] = int(model.intercept_ + model.coef_ * len(graph_items)+1) #NEXT WEEK
         else:
             next_day[items] = 0
-    with open("Databases/IdealProductList.json", "w") as filez: #write
-        json.dump(next_day, filez)
+    with open("Databases/IdealProductList.json", "w") as files: #write
+        json.dump(next_day, files)
     return next_day
 
 def Report_Generator():

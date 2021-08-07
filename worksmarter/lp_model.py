@@ -82,6 +82,7 @@ f = open("Databases/IdealProductList.json")
 optimal_stock = json.load(f)
 f = open("Databases/Current_Inventory.json")
 Current_Inventory = json.load(f)
+
 def To_Purchase_func():
     f = open("Databases/IdealProductList.json")
     next_days = json.load(f)

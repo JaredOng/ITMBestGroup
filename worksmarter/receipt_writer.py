@@ -54,22 +54,38 @@ def Receipt_Maker(kind,day):
     today = today.strftime("%m-%d-%y")
     if kind == "Purchase":
     #Purchase Receipt
+        supplier = ""
+        for i in  prdb.keys():
+            
+            if i  in sdb["Jared's Carriage Retail"]['Products_CostsPHP'].keys():
+                supplier = "Jared's Carriage Retail"
+            elif i in sdb["Shan's Shampoo"]['Products_CostsPHP'].keys():
+                supplier = "Shan's Shampoo"
+            elif i in sdb["Shan's Shampoo"]['Products_CostsPHP'].keys():
+                supplier = "Shan's Shampoo"
+            elif i in sdb["Colyn's Cola"]['Products_CostsPHP'].keys():
+                supplier = "Colyn's Cola"
+            elif i in sdb["Os' Sauce and salts"]['Products_CostsPHP'].keys():
+                supplier = "Os' Sauce and salts"
+            elif i in sdb["Reese's Milk and Cheese retail"]['Products_CostsPHP'].keys():
+                supplier = "Reese's Milk and Cheese retail"
+
         #Header
-        f = open(f"Receipts_Folder/Purchase Receipts/{today}_{prdb['Supplier']}_Purchase_Receipt.txt","w")
+        f = open(f"Receipts_Folder/Purchase Receipts/{today}_{supplier}_Purchase_Receipt.txt","w")
         f.write("---------------------------------------------\n") #40 Spaces
-        f.write(f"Supplier :     {prdb['Supplier']}\n")
-        f.write(f"Email    :     {sdb[prdb['Supplier']]['Email']}\n")
+        f.write(f"Supplier :     {supplier}\n")
+        f.write(f"Email    :     {sdb[supplier]['Email']}\n")
         f.write(f"Date     :     {today}\n")
         f.write("---------------------------------------------")
         f.write("\n")
         f.close
 
         #Body
-        with open(f"Receipts_Folder/Purchase Receipts/{today}_{prdb['Supplier']}_Purchase_Receipt.txt","a") as f:
-            for i in prdb['Order'].keys():
+        with open(f"Receipts_Folder/Purchase Receipts/{today}_{supplier}_Purchase_Receipt.txt","a") as f:
+            for i in prdb.keys():
                 Product = i
-                Qty = str(prdb["Order"][i])
-                Subtotal = str(int(Qty) * sdb[prdb['Supplier']]['Products_CostsPHP'][Product])
+                Qty = str(prdb[i])
+                Subtotal = str(int(Qty) * sdb[prdb[supplier]]['Products_CostsPHP'][Product])
                 Total += int(Subtotal)
                 while len(Product) < (31-len(Qty)):
                     Product += " "
@@ -80,7 +96,7 @@ def Receipt_Maker(kind,day):
                 f.write(f"{Product}\t{Qty}\t{Subtotal}\n")
 
         #Footer
-        f = open(f"Receipts_Folder/Purchase Receipts/{today}_{prdb['Supplier']}_Purchase_Receipt.txt","a")
+        f = open(f"Receipts_Folder/Purchase Receipts/{today}_{supplier}_Purchase_Receipt.txt","a")
         f.write("---------------------------------------------\n")
         Last_Line = "Total    :"
         while len(Last_Line)< (45-len(str(Total))):
@@ -133,4 +149,42 @@ def sales_content_writer(date):
     srdb = {}
     srdb[Date] = temp
     with open('Databases/Sales_Receipt_Content.json','w') as b:
+        json.dump(srdb,b,indent=4)
+
+def add_temp_orders(i):
+    to= []
+    to.append(i)
+    with open('Databases/temp_purchase_content.json','w') as f:
+        json.dump(to,f,indent=4)
+
+def order_sorter():
+    j = open('Databases/temp_purchase_content.json')
+    to = json.load(j)
+    e = open('Databases/Supplier_Database.json')
+    a ={}
+    b={}
+    c ={}
+    g = {}
+    h = {}
+    sdb = json.load(e)
+    for i in range(0,len(to[0])): #checks which product in the to list
+        for j in to[0][i].keys(): #send the item name
+                if j in e["Jared's Carriage Retail"]["Products_CostsPHP"].keys():
+                    a[j] = to[i][j]
+                elif j in e["Shan's Shampoo"]["Products_CostsPHP"].keys():
+                    b[j] = to[i][j]
+                elif j in e["Colyn's Cola"]["Products_CostsPHP"].keys():
+                    c[j] = to[i][j]
+                elif j in e["Reese's Milk and Cheese retail"]["Products_CostsPHP"].keys():
+                    g[j] = to[i][j]
+                elif j in e["Os' Sauce and salts"]["Products_CostsPHP"].keys():
+                    h[j] = to[i][j]
+    return a,b,c,g,h
+
+
+def purchase_content_writer(list):
+    day = date.today().strftime("%m-%d-%Y")
+    srdb = {}
+    srdb[day] = list
+    with open('Databases/Purchase_Receipt_Content.json','w') as b:
         json.dump(srdb,b,indent=4)

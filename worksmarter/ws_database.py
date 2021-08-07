@@ -100,6 +100,8 @@ def input_sales(date,product_name,qty,price,subtotal):
         json.dump(sales_log,log,indent=4)
 
 def input_purchases(date,product_name,qty,price,subtotal):
+    h = open("Databases/Purchase_Log.json")
+    purchase_log = json.load(h)
     if date not in purchase_log:
         purchase_log[date]={product_name:{"Quantity": qty,"Price": price, "Subtotal": subtotal}}
     else:

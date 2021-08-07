@@ -78,6 +78,23 @@ def orderstocks():
             subtotal = qty*price
             db.input_purchases(d,product_name,qty,price,subtotal)
             db.add_current_inventory(product_name,qty)
+        rw.add_temp_orders(purchase_list)
+        Jared,Shan,Colyn,Reese,Os= rw.order_sorter()
+        if Jared != {}:
+            rw.purchase_content_writer(Jared)
+            rw.Receipt_Maker("Purchase",d)
+        if Shan != {}:
+            rw.purchase_content_writer(Shan)
+            rw.Receipt_Maker("Purchase",d)
+        if Colyn != {}:
+            rw.purchase_content_writer(Colyn)
+            rw.Receipt_Maker("Purchase",d)
+        if Reese != {}:
+            rw.purchase_content_writer(Reese)
+            rw.Receipt_Maker("Purchase",d) 
+        if Os != {}:
+            rw.purchase_content_writer(Os)
+            rw.Receipt_Maker("Purchase",d)   
         return redirect('/purchaselog')
     return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list,purchase_list=purchase_list)
 

@@ -1,7 +1,3 @@
 {
-       "kind":"Purchase",
-        "Supplier":"Os' Sauce and salts",
-        "Order":{
-            "Silver Duck Soy Sauce":3
-        }
-    }
+    "08-07-2021": {}
+}

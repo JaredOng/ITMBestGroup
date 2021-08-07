@@ -1,9 +1,0 @@
----------------------------------------------
-Supplier :     Reese's Milk and Cheese retail
-Email    :     reese@reesecheese.com
-Date     :     08-07-2021
----------------------------------------------
-Mila's Chocolate Milk         	04    	9200
-Dairy King Ice Cream         	26   	83200
----------------------------------------------
-Total    :                              92400

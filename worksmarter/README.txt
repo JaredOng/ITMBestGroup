@@ -1,5 +1,9 @@
 Hi! Hello user! Thank you for receiving this copy of WorkSmarter.com! 
 
+Your default username and password are:
+username: "nottheaveragejoe"
+password: "imnotjoeking"
+
 To access the program please go to your terminal or anaconda prompt and run the following commands:
 1. export FLASK_APP=inventory_app.py
 2. export FLASK_ENV=development

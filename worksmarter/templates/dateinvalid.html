@@ -1,0 +1,27 @@
+<html>
+  <header>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <style>
+      .footer {
+        font-size:10px;
+      }
+    </style>
+    <h1>WorkSmarter.</h1>
+  </header>
+  <body style="background-color:96B7D3;">
+    <a href='/user_interface_page'>User Interface</a> | <a href='/purchaselog'>Purchase Log</a> |
+    <a href='/saleslog'>Sales Log</a> | <a href='/order_input'>Order Customer Input</a> |
+    <a href='/currentinventory'>Current Inventory</a> | <a href='/salesreceipts'>Sales Receipts</a> |
+    <a href='/purchasereceipts'>Purchase Receipts</a> | <!--<a href='/salesreceiptsmaker'>Sales Receipt Maker Confirmation</a> |-->
+    <a href='/orderstocks'>Order Stocks</a> |
+    <br>
+    {% if session["admin"] is defined %}
+        Welcome, {{ session["admin"]["first_name"] }}.
+        <a href='/logout'>Logout</a>
+        {% else %}
+        <a href='/user_interface_page'>Back</a>
+        {% endif %}
+
+    <p/>
+
+    <h2> DATE INVALID </h2>

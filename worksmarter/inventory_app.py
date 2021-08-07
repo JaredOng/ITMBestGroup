@@ -13,6 +13,7 @@ import os
 import receipt_writer
 import datetime
 import lp_model
+import json
 app = Flask(__name__)
 
 app.secret_key = b'secretkey'
@@ -142,15 +143,25 @@ def currentinventory():
 def salesreceiptsmaker():
     return render_template("salesreceiptsmaker.html",page="SalesrReceiptsMaker")
 
+g = open("Databases/Sales_Log.json")
+sales_log = json.load(g)
 @app.route('/salesrecprg',methods=["GET","POST"])
 def salesrecprg():
     if request.method=="POST":
         day = request.form.get('day')
-        kind = request.form.get('kind')
-        receipt_writer.sales_content_writer(day)
-        receipt_writer.Receipt_Maker(kind,day)
-        sales_receipts = db.get_sales_receipts()
-    return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+        if day in sales_log:
+            kind = request.form.get('kind')
+            receipt_writer.sales_content_writer(day)
+            receipt_writer.Receipt_Maker(kind,day)
+            sales_receipts = db.get_sales_receipts()
+            return render_template("salesreceipts.html", page="Sales Receipt",sales_receipts=sales_receipts)
+        else:
+            return redirect ('/dateinvalid')
+@app.route('/dateinvalid')
+def dateinvalid():
+    return render_template("dateinvalid.html", page="Date Invalid")
+
+
 
 @app.route('/reports', methods=["GET","POST"])
 def reports():

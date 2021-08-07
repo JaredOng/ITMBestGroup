@@ -91,10 +91,10 @@ def orderstocks():
             rw.Receipt_Maker("Purchase",d)
         if Reese != {}:
             rw.purchase_content_writer(Reese)
-            rw.Receipt_Maker("Purchase",d) 
+            rw.Receipt_Maker("Purchase",d)
         if Os != {}:
             rw.purchase_content_writer(Os)
-            rw.Receipt_Maker("Purchase",d)   
+            rw.Receipt_Maker("Purchase",d)
         return redirect('/purchaselog')
     return render_template("orderstocks.html", page="Order Stocks",optimal_stock_list=optimal_stock_list,purchase_list=purchase_list)
 
